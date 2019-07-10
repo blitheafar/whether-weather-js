@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>whether weather</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/weather-icons.min.css">
+</head>
+
+<body>
+    <!-- 顶部搜索栏 -->
+    <header>
+        <div>
+            <i class="fa fa-search fa-lg"></i>
+            <input type="text" name="" value="" placeholder="搜索">
+            <i id="ipt_delete" class="fa fa-times-circle fa-lg" onclick="removeIput()"></i>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-top">
+            <span class="main-left">
+                <i class="fa fa-map-marker fa-lg"></i>
+                <span>北京</span>
+            </span>
+            <span class="main-right">23:23更新</span>
+        </div>
+
+        <div class="main-main">
+                <span>23</span>
+                <span>小雨/西南风2级</span>
+                <span>17优</span>
+        </div>
+
+        <div class="main-bottom">
+            <span class="main-left">
+                <span>今天:</span>
+                <span>小雨转阴</span>
+            </span>
+            <span class="main-right">22~26°C</span>
+        </div>
+    </main>
+
+    <footer>
+        <!-- <div class="square">
+                <i class="wi wi-day-sunny"></i>
+                <div>北京</div>
+                <div>23</div>
+            </div> -->
+    </footer>
+
+    <script type="text/javascript">
+        function removeIput() {
+            //清除输入
+            document.getElementsByTagName('input')[0].value = '';
+        }
+        window.onload = function() {
+            var footer = document.getElementsByTagName('footer')[0];
+            //设置天气个数
+            var cityCount = 0;
+            for (var i = 0; i < cityCount; i++) {
+                var node = document.createElement('div');
+                node.setAttribute('class', 'square');
+                node.innerHTML = '<i class="wi wi-day-sunny"></i><div>北京</div><div>23</div>';
+                footer.appendChild(node);
+            }
+
+
+            //监听input，回车事件
+            document.getElementsByTagName('input')[0].addEventListener('keypress', function(e) {
+                var key = e.which || e.keyCode;
+                if (key === 13) { // 13 is enter
+                    let inputCity = document.getElementsByTagName('input')[0].value.trim();
+                    //回车后新增一个城市
+                    if (!(inputCity == '')) {
+                        addNewCity(inputCity);
+                    }
+                }
+            });
+
+            function addNewCity(_city) {
+                var node = document.createElement('div');
+                node.setAttribute('class', 'square');
+                node.innerHTML = '<i class="wi wi-day-sunny"></i><div>' + _city + '</div><div>23</div>';
+                footer.appendChild(node);
+            }
+        }
+    </script>
+</body>
+
+</html>

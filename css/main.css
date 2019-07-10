@@ -1,0 +1,102 @@
+/* body *{
+    border: red 1px solid;
+} */
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    height: 50px;
+}
+
+header>div{
+}
+
+.header-icon-size{
+    font-size: 50px;
+}
+
+header>div>input{
+    width: 200px;
+    height: 30px;
+}
+
+header>div>i{
+    color: #90a4ae;
+}
+
+#ipt_delete:hover{
+    color: #e64a19;
+}
+
+main{
+    position: relative;
+    display: inline-block;
+    width: 400px;
+    left: calc(50% - 210px);
+    box-shadow: 0 0 10px 5px #888888;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+main>div{
+    width: 400px;
+    margin: 0 auto;
+}
+
+.main-top,.main-bottom{
+    display: flex;
+}
+
+.main-left,.main-right{
+    width: 50%;
+}
+
+.main-right{
+    text-align: right;
+}
+
+.main-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-main>span:first-child{
+    font-size: 80px;
+}
+
+.main-main>span:nth-child(3){
+    display: inline-block;
+    text-align: center;
+    width: 60px;
+    background-color: #4caf50;
+    border-radius: 4px;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.line{
+    display: flex;
+}
+
+.square{
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    margin: 20px;
+}
+
+footer>div>i{
+    font-size: 100px;
+    margin:20px;
+}
