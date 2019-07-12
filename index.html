@@ -15,7 +15,7 @@
     <header>
         <div>
             <i class="fa fa-search fa-lg"></i>
-            <input type="text" name="" value="" placeholder="搜索">
+            <input type="text" name="" value="" placeholder="输入中文城市名搜索">
             <i id="ipt_delete" class="fa fa-times-circle fa-lg" onclick="removeIput()"></i>
         </div>
     </header>
@@ -59,13 +59,18 @@
     <footer>
         <!-- <div class="square">
                 <i class="wi wi-day-sunny"></i>
-                <div>北京</div>
-                <div>23</div>
+                <div>
+                    <span>北京</span>
+                    <span>/</span>
+                    <span>阴</span>
+                </div>
+                <div>23°C</div>
             </div> -->
     </footer>
 
     <!-- 取得访问者ip -->
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script type="text/javascript" src="js/logo-match.js"></script>
     <script type="text/javascript">
         function removeIput() {
             //清除输入
@@ -73,7 +78,7 @@
         }
 
         //生成当前天气
-        function initNowWeather(response){
+        function initNowWeather(response) {
             //填充数据
             //1.now_city，当前地区
             //2.update_time，更新时间
@@ -86,28 +91,53 @@
             //9.now_low_tem，今日最低气温
             //10.now_high_tem，今日最高气温
             //console.log(response.city);
-            document.getElementById('now_city').innerText=response.city;
-            document.getElementById('update_time').innerText=response.update_time;
-            document.getElementById('now_tem').innerText=response.tem;
-            document.getElementById('now_wea').innerText=response.wea;
-            document.getElementById('now_win').innerText=response.win+response.win_speed;
-            document.getElementById('now_air').innerText=response.air;
-            document.getElementById('now_air_level').innerText=response.air_level;
-            document.getElementById('now_today_wea').innerText=response.wea;
-            document.getElementById('now_low_tem').innerText=response.tem2;
-            document.getElementById('now_high_tem').innerText=response.tem1;
+            document.getElementById('now_city').innerText = response.city;
+            document.getElementById('update_time').innerText = response.update_time;
+            document.getElementById('now_tem').innerText = response.tem;
+            document.getElementById('now_wea').innerText = response.wea;
+            document.getElementById('now_win').innerText = response.win + response.win_speed;
+            document.getElementById('now_air').innerText = response.air;
+            document.getElementById('now_air_level').innerText = response.air_level;
+            document.getElementById('now_today_wea').innerText = response.wea;
+            document.getElementById('now_low_tem').innerText = response.tem2;
+            document.getElementById('now_high_tem').innerText = response.tem1;
+        }
+
+        //输入后，新增天气
+        function addNewCity(response) {
+            var footer = document.getElementsByTagName('footer')[0];
+            //取得数据
+            //1.new_city，新增地区
+            //2.city_tem，地区温度
+            let node = document.createElement('div');
+            node.setAttribute('class', 'square');
+            //匹配天气图标
+            let wea_logo=logoMatch(response.wea_img);
+            console.log(wea_logo);
+            node.innerHTML = '<i class="wi '+wea_logo+'"></i><div><span>'+response.city+'</span><span>/</span><span>'+response.wea+'</span></div><div>'+response.tem+'°C</div>';
+            footer.appendChild(node);
         }
 
         window.onload = function() {
             var footer = document.getElementsByTagName('footer')[0];
             //设置天气个数
-            var cityCount = 0;
-            for (var i = 0; i < cityCount; i++) {
-                var node = document.createElement('div');
-                node.setAttribute('class', 'square');
-                node.innerHTML = '<i class="wi wi-day-sunny"></i><div>北京</div><div>23</div>';
-                footer.appendChild(node);
+            // var cityCount = 0;
+            // for (var i = 0; i < cityCount; i++) {
+            //     var node = document.createElement('div');
+            //     node.setAttribute('class', 'square');
+            //     node.innerHTML = '<i class="wi wi-day-sunny"></i><div>北京</div><div>23</div>';
+            //     footer.appendChild(node);
+            // }
+
+            //jsonp方式通过客户端ip取得本地天气
+            function loadWeatherByIP(_ip) {
+                let script = document.createElement("script");
+                script.src = 'https://www.tianqiapi.com/api?' + 'version=v6&ip=' + _ip + '&callback=initNowWeather';
+                document.body.insertBefore(script, document.body.firstChild);
             }
+
+            let _userIP = returnCitySN["cip"];
+            loadWeatherByIP(_userIP);
 
 
             //监听input，回车事件
@@ -117,27 +147,41 @@
                     let inputCity = document.getElementsByTagName('input')[0].value.trim();
                     //回车后新增一个城市
                     if (!(inputCity == '')) {
-                        addNewCity(inputCity);
+                        searchCity(inputCity);
+                        //addNewCity(inputCity);
                     }
                 }
             });
 
-            function addNewCity(_city) {
-                var node = document.createElement('div');
-                node.setAttribute('class', 'square');
-                node.innerHTML = '<i class="wi wi-day-sunny"></i><div>' + _city + '</div><div>23</div>';
-                footer.appendChild(node);
+            function searchCity(_input) {
+                //按输入匹配json内城市
+                var citydata = JSON.parse(city);
+
+                let resultCity = citydata.filter((item) => {
+                    if (item.cityZh == _input) {
+                        //alert(item.id + item.cityEn);
+                        return item;
+                    }
+                })
+
+                if (resultCity.length == 0) {
+                    alert("查找城市不存在");
+                } else {
+                    //alert(resultCity[0].id + resultCity[0].cityEn);
+                    loadWeatherByID(resultCity[0].id);
+                }
             }
 
-            //jsonp方式通过客户端ip取得本地天气
-            function loadWeatherByIP(_ip) {
-                var script = document.createElement("script");
-                script.src='https://www.tianqiapi.com/api?'+'version=v6&ip='+_ip+'&callback=initNowWeather';
+            //jsonp方式通过地区id取得天气
+            function loadWeatherByID(_id) {
+                let script = document.createElement("script");
+                script.src = 'https://www.tianqiapi.com/api?' + 'version=v6&cityid=' + _id + '&callback=addNewCity';
                 document.body.insertBefore(script, document.body.firstChild);
             }
 
-            let _userIP = returnCitySN["cip"];
-            loadWeatherByIP(_userIP);
+
+            //监听输入，显示城市列表
+
 
             //匹配json文件中城市
             function readCity(_search_key) {

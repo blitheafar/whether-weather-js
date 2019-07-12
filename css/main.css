@@ -97,6 +97,10 @@ footer{
     margin: 20px;
 }
 
+.square>i{
+    color: #3f51b5;
+}
+
 footer>div>i{
     font-size: 100px;
     margin:20px;
