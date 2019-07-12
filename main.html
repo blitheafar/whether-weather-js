@@ -24,23 +24,35 @@
         <div class="main-top">
             <span class="main-left">
                 <i class="fa fa-map-marker fa-lg"></i>
-                <span>北京</span>
+                <span id="now_city">-</span>
             </span>
-            <span class="main-right">23:23更新</span>
+            <span class="main-right">
+                <span id="update_time">--:--</span>
+                <span>更新</span>
+            </span>
         </div>
 
         <div class="main-main">
-                <span>23</span>
-                <span>小雨/西南风2级</span>
-                <span>17优</span>
+            <span id="now_tem">-</span>
+            <span>
+                <span id="now_wea">-</span>
+                <span>/</span>
+                <span id="now_win">-</span>
+            </span>
+            <span>
+                <span id="now_air">-</span>
+                <span id="now_air_level">-</span>
+            </span>
         </div>
 
         <div class="main-bottom">
             <span class="main-left">
                 <span>今天:</span>
-                <span>小雨转阴</span>
+                <span id="now_today_wea">-</span>
             </span>
-            <span class="main-right">22~26°C</span>
+            <span class="main-right">
+                <span id="now_low_tem">-</span>~<span id="now_high_tem">-</span>°C
+            </span>
         </div>
     </main>
 
@@ -52,11 +64,40 @@
             </div> -->
     </footer>
 
+    <!-- 取得访问者ip -->
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
     <script type="text/javascript">
         function removeIput() {
             //清除输入
             document.getElementsByTagName('input')[0].value = '';
         }
+
+        //生成当前天气
+        function initNowWeather(response){
+            //填充数据
+            //1.now_city，当前地区
+            //2.update_time，更新时间
+            //3.now_tem，当前温度
+            //4.now_wea，当前天气情况
+            //5.now_win，当前风级
+            //6.now_air，当前空气指数
+            //7.now_air_level，当前空气描述
+            //8.now_today_wea，今日天气
+            //9.now_low_tem，今日最低气温
+            //10.now_high_tem，今日最高气温
+            //console.log(response.city);
+            document.getElementById('now_city').innerText=response.city;
+            document.getElementById('update_time').innerText=response.update_time;
+            document.getElementById('now_tem').innerText=response.tem;
+            document.getElementById('now_wea').innerText=response.wea;
+            document.getElementById('now_win').innerText=response.win+response.win_speed;
+            document.getElementById('now_air').innerText=response.air;
+            document.getElementById('now_air_level').innerText=response.air_level;
+            document.getElementById('now_today_wea').innerText=response.wea;
+            document.getElementById('now_low_tem').innerText=response.tem2;
+            document.getElementById('now_high_tem').innerText=response.tem1;
+        }
+
         window.onload = function() {
             var footer = document.getElementsByTagName('footer')[0];
             //设置天气个数
@@ -87,6 +128,31 @@
                 node.innerHTML = '<i class="wi wi-day-sunny"></i><div>' + _city + '</div><div>23</div>';
                 footer.appendChild(node);
             }
+
+            //jsonp方式通过客户端ip取得本地天气
+            function loadWeatherByIP(_ip) {
+                var script = document.createElement("script");
+                script.src='https://www.tianqiapi.com/api?'+'version=v6&ip='+_ip+'&callback=initNowWeather';
+                document.body.insertBefore(script, document.body.firstChild);
+            }
+
+            let _userIP = returnCitySN["cip"];
+            loadWeatherByIP(_userIP);
+
+            //匹配json文件中城市
+            function readCity(_search_key) {
+                var citydata = JSON.parse(city);
+                //alert(mydata.length);
+                //console.log(citydata[0].cityEn);
+
+                // var div = document.getElementById('data');
+                //
+                // for (var i = 0; i < mydata.length; i++) {
+                //     div.innerHTML = div.innerHTML + "<p class='inner' id=" + i + ">" + mydata[i].name + "</p>" + "<br>";
+                // }
+            };
+
+            readCity('');
         }
     </script>
 </body>
