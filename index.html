@@ -57,7 +57,7 @@
     </main>
 
     <footer>
-        <!-- <div class="square">
+        <!-- <div class="square cityLight">
                 <i class="wi wi-day-sunny"></i>
                 <div>
                     <span>北京</span>
@@ -120,6 +120,13 @@
             node.innerHTML = '<i class="wi ' + wea_logo + '"></i><div><span>' + _singleCity.city + '</span><span>/</span><span>' + _singleCity.wea + '</span></div><div>' + _singleCity.tem + '°C</div>';
             //给底部城市列表添加点击事件
             node.addEventListener('click', function(event) {
+                //清除其他城市选中效果
+                let cityList=document.getElementsByClassName('square');
+                for (item of cityList) {
+                    item.classList.remove('cityLight');
+                }
+                //设置选中效果
+                this.classList.add('cityLight');
                 //取得cityid
                 let cityid = this.getAttribute('cityid');
                 //取得已保存的匹配天气数据
