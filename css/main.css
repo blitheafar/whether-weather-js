@@ -71,9 +71,9 @@ main>div{
 .main-main>span:nth-child(3){
     display: inline-block;
     text-align: center;
-    width: 60px;
     border-radius: 4px;
     color: #ffffff;
+    padding: 0 10px;
 }
 
 footer{
@@ -106,7 +106,7 @@ footer>div>i{
 }
 
 .level_1{
-    background-color: GREEN;
+    background-color: #9ccc65;
 }
 
 .level_2{
