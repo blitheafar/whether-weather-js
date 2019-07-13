@@ -89,7 +89,7 @@ footer{
 .square{
     display: flex;
     flex-direction: column;
-    width: 180px;
+    width: 140px;
     text-align: center;
     border: 1px solid #e0e0e0;
     border-radius: 25px;
@@ -101,7 +101,7 @@ footer{
 }
 
 footer>div>i{
-    font-size: 100px;
+    font-size: 60px;
     margin:20px;
 }
 
