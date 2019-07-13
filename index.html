@@ -121,10 +121,8 @@
             //给底部城市列表添加点击事件
             node.addEventListener('click', function(event) {
                 //清除其他城市选中效果
-                let cityList=document.getElementsByClassName('square');
-                for (item of cityList) {
-                    item.classList.remove('cityLight');
-                }
+                clearClick();
+
                 //设置选中效果
                 this.classList.add('cityLight');
                 //取得cityid
@@ -140,6 +138,14 @@
             });
 
             return node;
+        }
+
+        //清除其他城市选中效果方法
+        function clearClick() {
+            let cityList=document.getElementsByClassName('square');
+            for (item of cityList) {
+                item.classList.remove('cityLight');
+            }
         }
 
         //输入后，新增天气
