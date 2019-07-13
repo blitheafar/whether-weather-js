@@ -72,7 +72,6 @@ main>div{
     display: inline-block;
     text-align: center;
     width: 60px;
-    background-color: #4caf50;
     border-radius: 4px;
     color: #ffffff;
 }
@@ -104,4 +103,28 @@ footer{
 footer>div>i{
     font-size: 100px;
     margin:20px;
+}
+
+.level_1{
+    background-color: GREEN;
+}
+
+.level_2{
+    background-color: #ffd600;
+}
+
+.level_3{
+    background-color: ORANGE;
+}
+
+.level_4{
+    background-color: RED;
+}
+
+.level_5{
+    background-color: PURPLE;
+}
+
+.level_6{
+    background-color: #880e4f;
 }
