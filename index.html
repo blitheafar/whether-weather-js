@@ -105,18 +105,47 @@
 
         //输入后，新增天气
         function addNewCity(response) {
+            //保存response
+            let wea_json = sessionStorage.getItem('wea_json');
+            if (!wea_json) {
+                //console.log('null');
+                let new_wea_json=JSON.stringify([response]);
+                sessionStorage.setItem('wea_json',new_wea_json);
+            }else{
+                //console.log('new json');
+                //判断城市是否已存在
+                let wea_json_object=JSON.parse(wea_json);
+                wea_json_object.push(response);
+                sessionStorage.setItem('wea_json',JSON.stringify(wea_json_object));
+            }
             var footer = document.getElementsByTagName('footer')[0];
             //取得数据
             //1.new_city，新增地区
             //2.city_tem，地区温度
             let node = document.createElement('div');
             node.setAttribute('class', 'square');
+            //自定义属性传入cityid
+            node.setAttribute("cityid", response.cityid);
             //匹配天气图标
-            let wea_logo=logoMatch(response.wea_img);
-            console.log(wea_logo);
-            node.innerHTML = '<i class="wi '+wea_logo+'"></i><div><span>'+response.city+'</span><span>/</span><span>'+response.wea+'</span></div><div>'+response.tem+'°C</div>';
+            let wea_logo = logoMatch(response.wea_img);
+            node.innerHTML = '<i class="wi ' + wea_logo + '"></i><div><span>' + response.city + '</span><span>/</span><span>' + response.wea + '</span></div><div>' + response.tem + '°C</div>';
+            //给底部城市列表添加点击事件
+            node.addEventListener('click', function(event) {
+                //取得cityid
+                let cityid = this.getAttribute('cityid');
+                //取得已保存的匹配天气数据
+                let wea_json=sessionStorage.getItem('wea_json');
+                //匹配当前城市
+                let now_city=JSON.parse(wea_json).filter((item)=>{
+                    return item.cityid==cityid;
+                })
+
+                initNowWeather(now_city[0]);
+            });
             footer.appendChild(node);
         }
+
+
 
         window.onload = function() {
             var footer = document.getElementsByTagName('footer')[0];
@@ -179,24 +208,24 @@
                 document.body.insertBefore(script, document.body.firstChild);
             }
 
+            //监听点击城市列表项
+            //let cityList = document.getElementsByClassName('square');
+            // document.querySelector('footer').addEventListener('click', function(event) {
+            //     console.log('work');
+            //     console.log(event.target.tagName);
+            //     if (event.target.tagName.toLowerCase() === 'div') {
+            //         // do your action on your 'li' or whatever it is you're listening for
+            //         alert('test');
+            //     }
+            // },false);
+            // for (item of cityList) {
+            //     item.addEventListener('click', () => {
+            //         alert('test');
+            //     });
+            // }
+
 
             //监听输入，显示城市列表
-
-
-            //匹配json文件中城市
-            function readCity(_search_key) {
-                var citydata = JSON.parse(city);
-                //alert(mydata.length);
-                //console.log(citydata[0].cityEn);
-
-                // var div = document.getElementById('data');
-                //
-                // for (var i = 0; i < mydata.length; i++) {
-                //     div.innerHTML = div.innerHTML + "<p class='inner' id=" + i + ">" + mydata[i].name + "</p>" + "<br>";
-                // }
-            };
-
-            readCity('');
         }
     </script>
 </body>
