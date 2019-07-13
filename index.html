@@ -188,7 +188,6 @@
 
                 let resultCity = citydata.filter((item) => {
                     if (item.cityZh == _input) {
-                        //alert(item.id + item.cityEn);
                         return item;
                     }
                 })
@@ -196,8 +195,26 @@
                 if (resultCity.length == 0) {
                     alert("查找城市不存在");
                 } else {
-                    //alert(resultCity[0].id + resultCity[0].cityEn);
-                    loadWeatherByID(resultCity[0].id);
+                    //检查城市是否已添加
+                    if (checkCityExit(resultCity[0].id)) {
+                        alert('城市已添加');
+                    }else{
+                        //alert(resultCity[0].id + resultCity[0].cityEn);
+                        loadWeatherByID(resultCity[0].id);
+                    }
+                }
+            }
+
+            function checkCityExit(_id) {
+                let city_json=JSON.parse(sessionStorage.getItem('wea_json'));
+                if (city_json) {
+                    let checkResult=city_json.filter((item)=>{
+                        return item.cityid==_id;
+                    })
+
+                    return checkResult.length==1;
+                }else{
+                    return false;
                 }
             }
 
