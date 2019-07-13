@@ -122,7 +122,6 @@
             node.addEventListener('click', function(event) {
                 //清除其他城市选中效果
                 clearClick();
-
                 //设置选中效果
                 this.classList.add('cityLight');
                 //取得cityid
@@ -133,10 +132,8 @@
                 let now_city = JSON.parse(wea_json).filter((item) => {
                     return item.cityid == cityid;
                 })
-
                 initNowWeather(now_city[0]);
             });
-
             return node;
         }
 
@@ -224,13 +221,11 @@
             function searchCity(_input) {
                 //按输入匹配json内城市
                 var citydata = JSON.parse(city);
-
                 let resultCity = citydata.filter((item) => {
                     if (item.cityZh == _input) {
                         return item;
                     }
                 })
-
                 if (resultCity.length == 0) {
                     alert("查找城市不存在");
                 } else {
@@ -250,7 +245,6 @@
                     let checkResult = city_json.filter((item) => {
                         return item.cityid == _id;
                     })
-
                     return checkResult.length == 1;
                 } else {
                     return false;
@@ -279,7 +273,6 @@
             //         alert('test');
             //     });
             // }
-
 
             //监听输入，显示城市列表
         }
