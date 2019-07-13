@@ -79,7 +79,7 @@
 
         //生成当前天气
         function initNowWeather(response) {
-            console.log(response);
+            //console.log(response);
             //填充数据
             //1.now_city，当前地区
             //2.update_time，更新时间
@@ -99,7 +99,7 @@
             document.getElementById('now_win').innerText = response.win + response.win_speed;
             let className=airMatch(response.air_level);
             //设置空气质量背景色
-            document.getElementById('now_air_container').classList.add(className);
+            document.getElementById('now_air_container').className=className;
             document.getElementById('now_air').innerText = response.air;
             document.getElementById('now_air_level').innerText = response.air_level;
             document.getElementById('now_today_wea').innerText = response.wea;

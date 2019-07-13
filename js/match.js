@@ -36,7 +36,7 @@ function logoMatch(wea) {
 }
 
 //空气质量等级颜色匹配
-function airMatch(_level) {
+function airMatch(_level,_node) {
     let match;
     switch (_level) {
         case "良":
