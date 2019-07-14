@@ -100,6 +100,10 @@ footer{
     box-shadow: 0 0 10px 5px #64b5f6 !important;
 }
 
+.square>div:last-child{
+    padding-bottom: 10px;
+}
+
 .cityLight{
     box-shadow: 0 0 10px 5px #64b5f6 !important;
 }
@@ -108,9 +112,15 @@ footer{
     color: #3f51b5;
 }
 
+#wea_chart{
+    margin: 0 auto;
+    width: 600px;
+    height: 350px;
+}
+
 footer>div>i{
     font-size: 60px;
-    margin:20px;
+    margin:20px 20px 10px;
 }
 
 .level_1{
@@ -134,5 +144,5 @@ footer>div>i{
 }
 
 .level_6{
-    background-color: #880e4f;
+    background-color: BROWN;
 }
