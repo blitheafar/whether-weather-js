@@ -93,7 +93,8 @@
             // }
 
             let _userIP = returnCitySN["cip"];
-            loadWeatherByIP(_userIP);
+            loadTodayWeatherByIP(_userIP);
+            loadWeekWeatherByIP(_userIP);
 
             //监听input，回车事件
             document.getElementsByTagName('input')[0].addEventListener('keypress', function(e) {
@@ -128,240 +129,297 @@
         }
     </script>
     <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('wea_chart'));
+        function createWeekEchart(logo_arr, high_tem_arr, low_tem_arr, win_arr, air_arr, _min, _max) {
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('wea_chart'));
 
-        // 指定图表的配置项和数据
-        option = {
-            xAxis: [{
-                offset: -240,
-                type: 'category',
-                data: ['今天', '明天', '周一', '周二', '周三', '周四', '周五'],
-                axisLine: {
-                    show: false,
-                },
-                axisTick: {
-                    show: false,
-                },
-            }, {
-                offset: -40,
-                type: 'category',
-                data: ['07/14', '07/15', '07/16', '07/17', '07/18', '07/19', '07/20'],
-                axisLine: {
-                    show: false,
-                },
-                axisTick: {
-                    show: false,
-                },
-            }, {
-                offset: -80,
-                type: 'category',
-                data: ['xue', 'shachen', 'wu', 'bingbao', 'yun', 'yu', 'yin'],
-                axisLine: {
-                    show: false,
-                },
-                axisTick: {
-                    show: false,
-                },
-                axisLabel: {
-                    formatter: function(value) {
-                        return weaLogoRichMatch(value);
+            // 指定图表的配置项和数据
+            option = {
+                xAxis: [{
+                    offset: -240,
+                    type: 'category',
+                    data: getWeekArray(),
+                    axisLine: {
+                        show: false,
                     },
-                    interval: 0, //设置成 0 强制显示所有标签。
-                    margin: 0,
-                    rich: { //x轴刻度标签的自定义--图片+文字
-                        sunny: { //与data中的数组元素要对应
-                            width: 40,
-                            height: 40,
-                            backgroundColor: {
-                                image: 'images/sunny.svg',
-                            }
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        interval: 0, //设置成 0 强制显示所有标签。
+                    }
+                }, {
+                    offset: -40,
+                    type: 'category',
+                    data: get7Day(),
+                    axisLine: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        interval: 0, //设置成 0 强制显示所有标签。
+                    }
+                }, {
+                    offset: -80,
+                    type: 'category',
+                    data: logo_arr,
+                    axisLine: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        formatter: function(value) {
+                            return weaLogoRichMatch(value);
                         },
-                        snow: {
-                            width: 40,
-                            height: 40,
-                            backgroundColor: {
-                                image: 'images/snow.svg',
-                            }
-                        },
-                        dust: {
-                            width: 40,
-                            height: 40,
-                            backgroundColor: {
-                                image: 'images/dust.svg',
-                            }
-                        },
-                        fog: {
-                            width: 40,
-                            height: 40,
-                            backgroundColor: {
-                                image: 'images/fog.svg',
-                            }
-                        },
-                        hail: {
-                            width: 40,
-                            height: 40,
-                            backgroundColor: {
-                                image: 'images/hail.svg',
-                            }
-                        },
-                        cloud: {
-                            width: 40,
-                            height: 40,
-                            backgroundColor: {
-                                image: 'images/cloud.svg',
-                            }
-                        },
-                        rain: {
-                            width: 40,
-                            height: 40,
-                            backgroundColor: {
-                                image: 'images/rain.svg',
-                            }
-                        },
-                        cloudy: {
-                            width: 40,
-                            height: 40,
-                            backgroundColor: {
-                                image: 'images/cloudy.svg',
+                        interval: 0, //设置成 0 强制显示所有标签。
+                        margin: 0,
+                        rich: { //x轴刻度标签的自定义--图片+文字
+                            sunny: { //与data中的数组元素要对应
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/sunny.svg',
+                                }
+                            },
+                            snow: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/snow.svg',
+                                }
+                            },
+                            dust: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/dust.svg',
+                                }
+                            },
+                            fog: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/fog.svg',
+                                }
+                            },
+                            hail: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/hail.svg',
+                                }
+                            },
+                            cloud: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/cloud.svg',
+                                }
+                            },
+                            rain: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/rain.svg',
+                                }
+                            },
+                            cloudy: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/cloudy.svg',
+                                }
                             }
                         }
                     }
-                }
-            }, {
-                offset: -210,
-                type: 'category',
-                data: ['微风', '微风', '微风', '微风', '微风', '微风', '微风'],
-                splitLine: {
-                    show: true,
-                    interval: 0,
-                    lineStyle: {
-                        color: '#e0e0e0',
+                }, {
+                    offset: -210,
+                    type: 'category',
+                    data: win_arr,
+                    splitLine: {
+                        show: true,
+                        interval: 0,
+                        lineStyle: {
+                            color: '#e0e0e0',
+                        },
                     },
-                },
-                axisLine: {
-                    show: false,
-                },
-                axisTick: {
-                    show: false,
-                },
-            }, {
-                offset: -230,
-                type: 'category',
-                data: ['优', '良', '轻度污染', '中度污染', '重度污染', '严重污染', '良'],
-                //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                axisLine: {
-                    show: false,
-                },
-                axisTick: {
-                    show: false,
-                },
-                axisLabel: { //刻度标签--即轴线下的文字
-                    formatter: function(value) {
-                        return airRichMatch(value);
+                    axisLine: {
+                        show: false,
                     },
-                    interval: 0, //设置成 0 强制显示所有标签。
-                    margin: 0,
-                    rich: { //x轴刻度标签的自定义--图片+文字
-                        level_1: { //与data中的数组元素要对应
-                            width: 40,
-                            height: 20,
-                            align: 'center',
-                            backgroundColor: '#9ccc65',
-                            borderRadius: 4,
-                            color: '#ffffff',
+                    axisTick: {
+                        show: false,
+                    },
+                }, {
+                    offset: -230,
+                    type: 'category',
+                    data: air_arr,
+                    //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    axisLine: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: { //刻度标签--即轴线下的文字
+                        formatter: function(value) {
+                            return airRichMatch(value);
                         },
-                        level_2: {
-                            width: 40,
-                            height: 20,
-                            lineHeight: 20,
-                            align: 'center',
-                            backgroundColor: '#ffd600',
-                            borderRadius: 4,
-                            color: '#ffffff',
-                        },
-                        level_3: {
-                            width: 40,
-                            height: 20,
-                            lineHeight: 20,
-                            align: 'center',
-                            backgroundColor: 'ORANGE',
-                            borderRadius: 4,
-                            color: '#ffffff',
-                        },
-                        level_4: {
-                            width: 40,
-                            height: 20,
-                            lineHeight: 20,
-                            align: 'center',
-                            backgroundColor: 'RED',
-                            borderRadius: 4,
-                            color: '#ffffff',
-                        },
-                        level_5: {
-                            width: 40,
-                            height: 20,
-                            lineHeight: 20,
-                            align: 'center',
-                            backgroundColor: 'PURPLE',
-                            borderRadius: 4,
-                            color: '#ffffff',
-                        },
-                        level_6: {
-                            width: 40,
-                            height: 20,
-                            lineHeight: 20,
-                            align: 'center',
-                            backgroundColor: 'BROWN',
-                            borderRadius: 4,
-                            color: '#ffffff',
+                        interval: 0, //设置成 0 强制显示所有标签。
+                        margin: 0,
+                        rich: { //x轴刻度标签的自定义--图片+文字
+                            level_1: { //与data中的数组元素要对应
+                                width: 40,
+                                height: 20,
+                                align: 'center',
+                                backgroundColor: '#9ccc65',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_2: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: '#ffd600',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_3: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: 'ORANGE',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_4: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: 'RED',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_5: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: 'PURPLE',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_6: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: 'BROWN',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            }
                         }
                     }
-                }
-            }],
-            yAxis: {
-                show: true,
-                splitLine: {
-                    show: false,
-                    interval: 0,
-                },
-                min: 0,
-                max: 70,
-                axisTick: {
-                    show: false,
-                },
-                axisLabel: {
+                }],
+                yAxis: {
                     show: true,
-                },
-                axisLine: {
-                    lineStyle: {
-                        color: '#e0e0e0',
+                    splitLine: {
+                        show: false,
+                        interval: 0,
+                    },
+                    min: _min,
+                    max: _max,
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#e0e0e0',
+                        }
                     }
-                }
-            },
-            series: [{
-                data: [25, 27, 28, 32, 35, 35, 29],
-                type: 'line',
-                smooth: true,
-                color: ['#9e9e9e'],
-                label: {
-                    show: true,
-                    position: 'top',
                 },
-            }, {
-                data: [22, 22, 23, 25, 25, 26, 24],
-                type: 'line',
-                smooth: true,
-                color: ['#bdbdbd'],
-                label: {
-                    show: true,
-                    position: 'bottom',
-                },
-            }]
-        };
+                series: [{
+                    data: high_tem_arr,
+                    type: 'line',
+                    smooth: true,
+                    lineStyle:{
+                        color: '#bdbdbd',
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: function(param) {
+                            //匹配数组第一个值
+                            if (param.dataIndex==0) {
+                                return '{light|'+param.value+'}';
+                            }
+                        },
+                        interval: 0, //设置成 0 强制显示所有标签。
+                        rich: {
+                            light: { //设置第一个点颜色
+                                color: '#000000',
+                            }
+                        }
+                    },
+                    itemStyle:{
+                        // borderColor: '#000000',
+                        // borderWidth: 2,
+                        //回调函数设置第一个点颜色
+                        color: function(param) {
+                            if (param.dataIndex==0) {
+                                return '#000000';
+                            }else{
+                                return '#9e9e9e';
+                            }
+                        }
+                    }
+                }, {
+                    data: low_tem_arr,
+                    type: 'line',
+                    smooth: true,
+                    lineStyle:{
+                        color: '#e0e0e0',
+                    },
+                    label: {
+                        show: true,
+                        position: 'bottom',
+                        formatter: function(param) {
+                            //匹配数组第一个值
+                            if (param.dataIndex==0) {
+                                return '{light|'+param.value+'}';
+                            }
+                        },
+                        interval: 0, //设置成 0 强制显示所有标签。
+                        rich: {
+                            light: { //设置第一个点颜色
+                                color: '#000000',
+                            }
+                        }
+                    },
+                    itemStyle:{
+                        color: function(param) {
+                            if (param.dataIndex==0) {
+                                return '#000000';
+                            }else{
+                                return '#9e9e9e';
+                            }
+                        }
+                    }
+                }]
+            };
 
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
     </script>
 </body>
 
