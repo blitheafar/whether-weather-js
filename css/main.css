@@ -2,15 +2,17 @@
     border: red 1px solid;
 } */
 
+body{
+    display: flex;
+    flex-direction: column;
+}
+
 header{
     display: flex;
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid #e0e0e0;
     height: 50px;
-}
-
-header>div{
 }
 
 .header-icon-size{
@@ -31,19 +33,26 @@ header>div>i{
 }
 
 main{
+    display: flex;
+    justify-content: center;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
     position: relative;
-    display: inline-block;
+    margin: auto 0;
     width: 400px;
-    left: calc(50% - 210px);
+    min-width: 280px;
+    max-width: 400px;
     box-shadow: 0 0 10px 5px #bdbdbd;
-    margin: 20px 0;
+    margin: 20px 10px;
     padding: 10px;
     border-radius: 10px;
 }
 
-main>div{
-    width: 400px;
-    margin: 0 auto;
+.main-container>div{
+    display: flex;
 }
 
 .main-top,.main-bottom{
@@ -114,8 +123,8 @@ footer{
 }
 
 #wea_chart{
-    margin: 0 auto;
-    width: 600px;
+    display: flex;
+    width: 100%;
     height: 350px;
 }
 
