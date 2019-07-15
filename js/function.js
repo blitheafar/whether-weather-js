@@ -17,8 +17,8 @@ function loadWeekWeatherByIP(_ip) {
     document.body.insertBefore(script, document.body.firstChild);
 }
 
+//按输入匹配json内城市
 function searchCity(_input) {
-    //按输入匹配json内城市
     var citydata = JSON.parse(city);
     let resultCity = citydata.filter((item) => {
         if (item.cityZh == _input) {
@@ -29,7 +29,7 @@ function searchCity(_input) {
         alert("查找城市不存在");
     } else {
         //检查城市是否已添加
-        if (checkCityExit(resultCity[0].id)) {
+        if (checkCityExist(resultCity[0].id)) {
             alert('城市已添加');
         } else {
             //alert(resultCity[0].id + resultCity[0].cityEn);
@@ -38,7 +38,8 @@ function searchCity(_input) {
     }
 }
 
-function checkCityExit(_id) {
+//检查城市是否存在
+function checkCityExist(_id) {
     let city_json = JSON.parse(sessionStorage.getItem('wea_json'));
     if (city_json) {
         let checkResult = city_json.filter((item) => {
