@@ -2,8 +2,7 @@
     border: red 1px solid;
 } */
 html * {
-    font-family: sans-serif;
-    font-weight: 200;
+    font-family: PingFangSC-Thin, sans-serif;
 }
 
 body {
