@@ -8,7 +8,7 @@
     <title>whether weather</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/weather-logo.css">
-    <!-- <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript" src="city/city.json"></script>
     <!-- 引入 echarts.js -->
     <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
@@ -177,11 +177,13 @@
             // 指定图表的配置项和数据
             option = {
                 grid: {
+                    top: '0',
                     left: '0',
                     right: '0',
+                    bottom: '0',
                 },
                 xAxis: [{
-                    offset: -240,
+                    offset: -205,
                     type: 'category',
                     data: getWeekArray(),
                     axisLine: {
@@ -282,7 +284,7 @@
                         }
                     }
                 }, {
-                    offset: -210,
+                    offset: -180,
                     type: 'category',
                     data: win_arr,
                     splitLine: {
@@ -302,7 +304,7 @@
                         interval: 0,
                     }
                 }, {
-                    offset: -230,
+                    offset: -200,
                     type: 'category',
                     data: air_arr,
                     //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -468,7 +470,7 @@
             // 使用刚指定的配置项和数据显示图表。
             myChart.setOption(option);
 
-            //window.onresize = myChart.resize;
+            window.onresize = myChart.resize;
         }
     </script>
 </body>

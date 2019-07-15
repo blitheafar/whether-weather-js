@@ -123,9 +123,10 @@ footer{
 }
 
 #wea_chart{
+    margin: 10px 0;
     display: flex;
     width: 100%;
-    height: 350px;
+    height: 200px;
 }
 
 footer>div>i{
