@@ -58,6 +58,13 @@ function loadWeatherByID(_id) {
     document.body.insertBefore(script, document.body.firstChild);
 }
 
+//jsonp方式通过地区id取得一周天气
+function loadWeekWeatherByID(_id) {
+    let script = document.createElement("script");
+    script.src = 'https://www.tianqiapi.com/api?' + 'version=v1&cityid=' + _id + '&callback=initWeekWeather';
+    document.body.insertBefore(script, document.body.firstChild);
+}
+
 //生成当前天气
 function initNowWeather(response) {
     //console.log(response);
@@ -106,7 +113,12 @@ function initWeekWeather(response) {
 
     //生成风况数组
     let win_arr=response.data.map((item)=>{
-        return '风'+item.win_speed;
+        let wind=item.win_speed;
+        if (wind.indexOf('转')!=-1) {
+            wind=wind.split('转')[1];
+        }
+        //console.log(wind);
+        return '风'+wind;
     })
 
     //生成空气质量数组
@@ -147,7 +159,7 @@ function createCityNode(_singleCity) {
     node.setAttribute("cityid", _singleCity.cityid);
     //匹配天气图标
     let wea_logo = logoMatch(_singleCity.wea_img);
-    node.innerHTML = '<i class="wi ' + wea_logo + '"></i><div><span>' + _singleCity.city + '</span><span>/</span><span>' + _singleCity.wea + '</span></div><div>' + _singleCity.tem + '°C</div>';
+    node.innerHTML = '<img class="' + wea_logo + '" alt="'+wea_logo+'"><div><span>' + _singleCity.city + '</span><span>/</span><span>' + _singleCity.wea + '</span></div><div>' + _singleCity.tem + '°C</div>';
     //给底部城市列表添加点击事件
     node.addEventListener('click', function(event) {
         //清除其他城市选中效果
@@ -163,6 +175,8 @@ function createCityNode(_singleCity) {
             return item.cityid == cityid;
         })
         initNowWeather(now_city[0]);
+        //载入一周天气
+        loadWeekWeatherByID(cityid);
     });
     return node;
 }

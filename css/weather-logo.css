@@ -1,0 +1,39 @@
+.sunny {
+    width: 90px;
+    content: url('../images/sunny.svg');
+}
+
+.snow {
+    width: 90px;
+    content: url('../images/snow.svg');
+}
+
+.dust {
+    width: 90px;
+    content: url('../images/dust.svg');
+}
+
+.fog {
+    width: 90px;
+    content: url('../images/fog.svg');
+}
+
+.hail {
+    width: 90px;
+    content: url('../images/hail.svg');
+}
+
+.cloud {
+    width: 90px;
+    content: url('../images/cloud.svg');
+}
+
+.rain {
+    width: 90px;
+    content: url('../images/rain.svg');
+}
+
+.cloudy {
+    width: 90px;
+    content: url('../images/cloudy.svg');
+}

@@ -4,31 +4,28 @@ function logoMatch(wea) {
     let match;
     switch (wea) {
         case "xue":
-            match = 'wi-snow';
+            match = 'snow';
             break;
         case "shachen":
-            match = 'wi-dust';
+            match = 'dust';
             break;
         case "wu":
-            match = 'wi-fog';
+            match = 'fog';
             break;
         case "bingbao":
-            match = 'wi-hail';
+            match = 'hail';
             break;
         case "yun":
-            match = 'wi-cloud';
+            match = 'cloud';
             break;
         case "yu":
-            match = 'wi-raindrops';
+            match = 'rain';
             break;
         case "yin":
-            match = 'wi-cloudy';
-            break;
-        case "qing":
-            match = 'wi-day-sunny';
+            match = 'cloudy';
             break;
         default:
-            match = 'wi-na';
+            match = 'sunny';
     }
 
     return match;

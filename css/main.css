@@ -35,7 +35,7 @@ main{
     display: inline-block;
     width: 400px;
     left: calc(50% - 210px);
-    box-shadow: 0 0 10px 5px #888888;
+    box-shadow: 0 0 10px 5px #bdbdbd;
     margin: 20px 0;
     padding: 10px;
     border-radius: 10px;
@@ -90,14 +90,15 @@ footer{
     display: flex;
     flex-direction: column;
     width: 140px;
-    text-align: center;
+    align-items: center;
     border-radius: 25px;
     margin: 20px;
-    box-shadow: 0 0 10px 5px #bdbdbd;
+    border: 1px solid #e0e0e0;
+    /* box-shadow: 0 0 10px 5px #bdbdbd; */
 }
 
 .square:hover{
-    box-shadow: 0 0 10px 5px #64b5f6 !important;
+    box-shadow: 0 0 10px 5px #bdbdbd !important;
 }
 
 .square>div:last-child{
@@ -105,7 +106,7 @@ footer{
 }
 
 .cityLight{
-    box-shadow: 0 0 10px 5px #64b5f6 !important;
+    box-shadow: 0 0 10px 5px #bdbdbd !important;
 }
 
 .square>i{

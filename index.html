@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>whether weather</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/weather-logo.css">
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/weather-icons.min.css">
     <script type="text/javascript" src="city/city.json"></script>
     <!-- 引入 echarts.js -->
     <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
@@ -63,8 +63,8 @@
     </figure>
 
     <footer>
-        <!-- <div class="square cityLight">
-                <i class="wi wi-day-sunny"></i>
+        <!-- <div class="square">
+                <img class="sunny" alt="">
                 <div>
                     <span>北京</span>
                     <span>/</span>
@@ -88,7 +88,7 @@
             // for (var i = 0; i < cityCount; i++) {
             //     var node = document.createElement('div');
             //     node.setAttribute('class', 'square');
-            //     node.innerHTML = '<i class="wi wi-day-sunny"></i><div>北京</div><div>23</div>';
+            //     node.innerHTML = '<img class="sunny"><div>北京</div><div>23</div>';
             //     footer.appendChild(node);
             // }
 
@@ -253,6 +253,9 @@
                     axisTick: {
                         show: false,
                     },
+                    axisLabel:{
+                        interval: 0,
+                    }
                 }, {
                     offset: -230,
                     type: 'category',
