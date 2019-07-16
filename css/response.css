@@ -1,0 +1,68 @@
+@media only screen and (max-width:450px) {
+
+    /* 页面小于450px时，设置小图标 */
+    .square {
+        display: flex;
+        flex-direction: column;
+        width: 65px;
+        height: 65px;
+        align-items: center;
+        border-radius: 10px;
+        margin: 3px;
+        border: 1px solid #e0e0e0;
+        /* box-shadow: 0 0 10px 5px #bdbdbd; */
+    }
+
+    .square>div {
+        /* chrome字体小于12缩放设置 */
+        font-size: 10px;
+        transform: scale(0.7);
+        display: inline-block;
+        line-height: 10px;
+    }
+
+    .square>div:last-child {
+        padding-bottom: 5px;
+    }
+
+    .sunny {
+        width: 40px;
+        content: url('../images/sunny.svg');
+    }
+
+    .snow {
+        width: 40px;
+        content: url('../images/snow.svg');
+    }
+
+    .dust {
+        width: 40px;
+        content: url('../images/dust.svg');
+    }
+
+    .fog {
+        width: 40px;
+        content: url('../images/fog.svg');
+    }
+
+    .hail {
+        width: 40px;
+        content: url('../images/hail.svg');
+    }
+
+    .cloud {
+        width: 40px;
+        content: url('../images/cloud.svg');
+    }
+
+    .rain {
+        width: 40px;
+        content: url('../images/rain.svg');
+    }
+
+    .cloudy {
+        width: 40px;
+        content: url('../images/cloudy.svg');
+    }
+
+}
