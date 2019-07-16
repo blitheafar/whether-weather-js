@@ -5,16 +5,18 @@ function removeIput() {
 
 //jsonp方式通过客户端ip取得实况天气
 function loadTodayWeatherByIP(_ip) {
+    removeScript();
     let script = document.createElement("script");
     script.src = 'https://www.tianqiapi.com/api?' + 'version=v6&ip=' + _ip + '&callback=initNowWeather';
-    document.body.insertBefore(script, document.body.firstChild);
+    document.getElementById('jsonp-area').appendChild(script);
 }
 
 //jsonp方式通过客户端ip取得七天天气
 function loadWeekWeatherByIP(_ip) {
+    removeScript();
     let script = document.createElement("script");
     script.src = 'https://www.tianqiapi.com/api?' + 'version=v1&ip=' + _ip + '&callback=initWeekWeather';
-    document.body.insertBefore(script, document.body.firstChild);
+    document.getElementById('jsonp-area').appendChild(script);
 }
 
 //按输入匹配json内城市
@@ -51,18 +53,25 @@ function checkCityExist(_id) {
     }
 }
 
+//移除冗余jsonp动态添加的script标签
+function removeScript() {
+    document.getElementById('jsonp-area').innerHTML='';
+}
+
 //jsonp方式通过地区id取得天气
 function loadWeatherByID(_id) {
+    removeScript();
     let script = document.createElement("script");
     script.src = 'https://www.tianqiapi.com/api?' + 'version=v6&cityid=' + _id + '&callback=addNewCity';
-    document.body.insertBefore(script, document.body.firstChild);
+    document.getElementById('jsonp-area').appendChild(script);
 }
 
 //jsonp方式通过地区id取得一周天气
 function loadWeekWeatherByID(_id) {
+    removeScript();
     let script = document.createElement("script");
     script.src = 'https://www.tianqiapi.com/api?' + 'version=v1&cityid=' + _id + '&callback=initWeekWeather';
-    document.body.insertBefore(script, document.body.firstChild);
+    document.getElementById('jsonp-area').appendChild(script);
 }
 
 //生成当前天气
@@ -99,42 +108,41 @@ function initNowWeather(response) {
 function initWeekWeather(response) {
     //console.log(response);
     //生成wea_img数组，
-    let logo_arr=response.data.map((item)=>{
+    let logo_arr = response.data.map((item) => {
         return item.wea_img;
     })
 
     //生成温度数组，
-    let high_tem_arr=response.data.map((item)=>{
-        return parseInt(item.tem1.slice(0,-1));
+    let high_tem_arr = response.data.map((item) => {
+        return parseInt(item.tem1.slice(0, -1));
     })
-    let low_tem_arr=response.data.map((item)=>{
-        return parseInt(item.tem2.slice(0,-1));
+    let low_tem_arr = response.data.map((item) => {
+        return parseInt(item.tem2.slice(0, -1));
     })
 
     //生成风况数组
-    let win_arr=response.data.map((item)=>{
-        let wind=item.win_speed;
-        if (wind.indexOf('转')!=-1) {
-            wind=wind.split('转')[1];
+    let win_arr = response.data.map((item) => {
+        let wind = item.win_speed;
+        if (wind.indexOf('转') != -1) {
+            wind = wind.split('转')[1];
         }
         //console.log(wind);
-        return '风'+wind;
+        return '风' + wind;
     })
 
     //生成空气质量数组
-    let air_arr=response.data.map((item)=>{
+    let air_arr = response.data.map((item) => {
         return item.air_level;
     })
 
     //计算yAxis中min,max
-    let lowest_tem=Math.min.apply(null,low_tem_arr);
-    let highest_tem=Math.max.apply(null,high_tem_arr);
-    let gap=highest_tem-lowest_tem;
-    let _min=lowest_tem-(gap*2);
-    let _max=highest_tem+(gap*3);
+    let lowest_tem = Math.min.apply(null, low_tem_arr);
+    let highest_tem = Math.max.apply(null, high_tem_arr);
+    let gap = highest_tem - lowest_tem;
+    let _min = lowest_tem - (gap * 2);
+    let _max = highest_tem + (gap * 3);
 
-    //console.log(logo_arr,high_tem_arr,low_tem_arr,win_arr,air_arr);
-    createWeekEchart(logo_arr,high_tem_arr,low_tem_arr,win_arr,air_arr,_min,_max);
+    createWeekEchart(logo_arr, high_tem_arr, low_tem_arr, win_arr, air_arr, _min, _max);
 }
 
 //刷新页面后载入sessionStorage保存数据
@@ -159,7 +167,7 @@ function createCityNode(_singleCity) {
     node.setAttribute("cityid", _singleCity.cityid);
     //匹配天气图标
     let wea_logo = logoMatch(_singleCity.wea_img);
-    node.innerHTML = '<img class="' + wea_logo + '" alt="'+wea_logo+'"><div><span>' + _singleCity.city + '</span><span>/</span><span>' + _singleCity.wea + '</span></div><div>' + _singleCity.tem + '°C</div>';
+    node.innerHTML = '<img class="' + wea_logo + '" alt="' + wea_logo + '"><div><span>' + _singleCity.city + '</span><span>/</span><span>' + _singleCity.wea + '</span></div><div>' + _singleCity.tem + '°C</div>';
     //给底部城市列表添加点击事件
     node.addEventListener('click', function(event) {
         //清除其他城市选中效果
