@@ -23,9 +23,11 @@
     <header>
         <div>
             <i class="fa fa-search fa-lg" id="search_btn"></i>
-            <input type="text" name="" value="" placeholder="输入中文城市名搜索">
+            <input id="input_key" type="text" placeholder="输入地区名搜索" oninput="preRequestCity(this.value)">
             <i id="ipt_delete" class="fa fa-times-circle fa-lg" onclick="removeIput()"></i>
         </div>
+        <ul id="city_list">
+        </ul>
     </header>
 
     <main>
@@ -125,6 +127,15 @@
     <script type="text/javascript" src="js/match.js"></script>
     <script type="text/javascript">
         window.onload = function() {
+            //点击其他区域隐藏搜索结果下拉列表
+            document.onclick = function() {　　　　　　　　
+                //清除列表
+                document.getElementById('city_list').innerHTML='';
+            }
+
+            // 监听输入
+
+
             //刷新页面后读取sessionStorage
             pageReload();
             // var footer = document.getElementsByTagName('footer')[0];
@@ -142,44 +153,29 @@
             loadWeekWeatherByIP(_userIP);
 
             //监听input，回车事件
-            document.getElementsByTagName('input')[0].addEventListener('keypress', function(e) {
-                var key = e.which || e.keyCode;
-                if (key === 13) { // 13 is enter
-                    let inputCity = document.getElementsByTagName('input')[0].value.trim();
-                    //回车后新增一个城市
-                    if (!(inputCity == '')) {
-                        searchCity(inputCity);
-                    }
-                }
-            });
+            // document.getElementsByTagName('input')[0].addEventListener('keypress', function(e) {
+            //     var key = e.which || e.keyCode;
+            //     if (key === 13) { // 13 is enter
+            //         let inputCity = document.getElementsByTagName('input')[0].value.trim();
+            //         //回车后新增一个城市
+            //         if (!(inputCity == '')) {
+            //             matchCity(inputCity);
+            //         }
+            //     }
+            // });
 
             //监听点击搜索按钮
-            document.getElementById('search_btn').addEventListener('click', function() {
-                let inputCity = document.getElementsByTagName('input')[0].value.trim();
-                //回车后新增一个城市
-                if (!(inputCity == '')) {
-                    searchCity(inputCity);
-                }
-            });
+            // document.getElementById('search_btn').addEventListener('click', function() {
+            //     let inputCity = document.getElementsByTagName('input')[0].value.trim();
+            //     //回车后新增一个城市
+            //     if (!(inputCity == '')) {
+            //         requestCity(inputCity);
+            //     }
+            // });
 
 
             //监听点击城市列表项
-            //let cityList = document.getElementsByClassName('square');
-            // document.querySelector('footer').addEventListener('click', function(event) {
-            //     console.log('work');
-            //     console.log(event.target.tagName);
-            //     if (event.target.tagName.toLowerCase() === 'div') {
-            //         // do your action on your 'li' or whatever it is you're listening for
-            //         alert('test');
-            //     }
-            // },false);
-            // for (item of cityList) {
-            //     item.addEventListener('click', () => {
-            //         alert('test');
-            //     });
-            // }
 
-            //监听输入，显示城市列表
         }
     </script>
     <script type="text/javascript">

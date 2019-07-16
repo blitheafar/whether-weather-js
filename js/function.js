@@ -19,22 +19,102 @@ function loadWeekWeatherByIP(_ip) {
     document.getElementById('jsonp-area').appendChild(script);
 }
 
+var timer = 0;
+function preRequestCity(value) {
+    //设置延迟
+    value = value.trim();
+    if (value == '') {
+        clearCityList();
+        clearTimeout(timer);
+        return;
+    }
+    clearTimeout(timer);
+    timer = setTimeout(function() {
+        //console.log(value);
+        clearCityList();
+        requestCity(value);
+    }, 500);
+}
+
+function clearCityList() {
+    //清除列表
+    document.getElementById('city_list').innerHTML = '';
+}
+
+//ajax方式请求城市
+function requestCity(_key) {
+    let xhr = new XMLHttpRequest();
+    let api = 'https://search.heweather.net/find?key=796936b244304082a708d3c860c034ef&location=' + _key + '&number=8';
+    xhr.open('get', api, true);
+    xhr.send(null);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                //console.log(xhr.responseText);
+                loadCity(JSON.parse(xhr.responseText));
+            } else {
+                requestErr();
+            }
+        }
+    }
+}
+
+//请求城市数据出错提示
+function requestErr() {
+    alert('连接出错');
+}
+
+//页面载入搜索结果列表
+function loadCity(data) {
+    let cityData = data.HeWeather6[0];
+    let city_parent_node = document.getElementById('city_list')
+    //判断请求状态
+    if (cityData.status == 'unknown location') {
+        let city_list_node = document.createElement('li');
+        city_list_node.innerText = '查找地区不存在';
+        city_parent_node.appendChild(city_list_node);
+    } else if (cityData.status == 'ok') {
+        cityData.basic.forEach((item) => {
+            let city_list_node = document.createElement('li');
+            //自定义属性
+            city_list_node.setAttribute('location',item.location);
+            city_list_node.setAttribute('city-id',item.cid.slice(2));
+            let _text=item.location + '.' + item.parent_city;
+            //过长字符处理
+            city_list_node.innerText = _text;
+            //添加监听
+            city_list_node.addEventListener('click', function(event) {
+                //取得cityid
+                let cityid = this.getAttribute('city-id');
+                //在本地json文件匹配城市
+                matchCity(cityid);
+
+                // initNowWeather(now_city[0]);
+                // //载入一周天气
+                // loadWeekWeatherByID(cityid);
+            });
+            city_parent_node.appendChild(city_list_node);
+        })
+    } else {
+        requestErr();
+    }
+}
+
 //按输入匹配json内城市
-function searchCity(_input) {
+function matchCity(_cid) {
     var citydata = JSON.parse(city);
     let resultCity = citydata.filter((item) => {
-        if (item.cityZh == _input) {
+        if (item.id == _cid) {
             return item;
         }
     })
     if (resultCity.length == 0) {
-        alert("查找城市不存在");
+        alert("地区匹配出错");
     } else {
         //检查城市是否已添加
         if (checkCityExist(resultCity[0].id)) {
             alert('城市已添加');
         } else {
-            //alert(resultCity[0].id + resultCity[0].cityEn);
             loadWeatherByID(resultCity[0].id);
         }
     }
@@ -55,7 +135,7 @@ function checkCityExist(_id) {
 
 //移除冗余jsonp动态添加的script标签
 function removeScript() {
-    document.getElementById('jsonp-area').innerHTML='';
+    document.getElementById('jsonp-area').innerHTML = '';
 }
 
 //jsonp方式通过地区id取得天气
@@ -227,7 +307,7 @@ function getWeekArray() {
     //判断index值
     //index为0,
     if (index == 0) {
-        result = ['今天', '明天(周一)', '周二', '周三', '周四', '周五', '周六'];
+        result = ['今天', '明(周一)', '周二', '周三', '周四', '周五', '周六'];
     } else {
         for (let i = index; i < weeks.length; i++) {
             result.push(weeks[i]);
@@ -238,7 +318,7 @@ function getWeekArray() {
         }
         //替换数组前两个值
         result[0] = '今天';
-        let temp = '明天(' + result[1] + ')';
+        let temp = '明(' + result[1] + ')';
         result[1] = temp;
     }
     return result;
