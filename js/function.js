@@ -111,10 +111,14 @@ function matchCity(_cid) {
     if (resultCity.length == 0) {
         alert("地区匹配出错");
     } else {
+        //console.log(resultCity[0]);
+        //填充input为选中地区
+        document.getElementById('input_key').value=resultCity[0].cityZh;
         //检查城市是否已添加
         if (checkCityExist(resultCity[0].id)) {
             alert('城市已添加');
         } else {
+            showToast();
             loadWeatherByID(resultCity[0].id);
         }
     }
@@ -343,4 +347,16 @@ function get7Day() {
         result.push(tMonth + "/" + tDate);
     }
     return result;
+}
+
+//城市添加成功弹出框
+function showToast() {
+  // Get the snackbar DIV
+  var x = document.getElementById("snackbar");
+
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }

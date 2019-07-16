@@ -63,6 +63,9 @@ function airMatch(_level) {
 function airRichMatch(value) {
     let match;
     switch (value) {
+        case '优':
+            match = '{level_1|优}';
+            break;
         case '良':
             match = '{level_2|良}';
             break;
@@ -79,7 +82,7 @@ function airRichMatch(value) {
             match = '{level_6|严重}';
             break;
         default:
-            match = '{level_1|优}';
+            match = '{level_0|未知}';
     }
 
     return match;
