@@ -133,13 +133,10 @@
     <script type="text/javascript">
         window.onload = function() {
             //点击其他区域隐藏搜索结果下拉列表
-            document.onclick = function() {　　　　　　　　
+            document.addEventListener('click', function() {
                 //清除列表
-                document.getElementById('city_list').innerHTML='';
-            }
-
-            // 监听输入
-
+                document.getElementById('city_list').innerHTML = '';
+            });
 
             //刷新页面后读取sessionStorage
             pageReload();
