@@ -22,7 +22,7 @@
     <!-- 顶部搜索栏 -->
     <header>
         <div>
-            <i class="fa fa-search fa-lg"></i>
+            <i class="fa fa-search fa-lg" id="search_btn"></i>
             <input type="text" name="" value="" placeholder="输入中文城市名搜索">
             <i id="ipt_delete" class="fa fa-times-circle fa-lg" onclick="removeIput()"></i>
         </div>
@@ -149,10 +149,19 @@
                     //回车后新增一个城市
                     if (!(inputCity == '')) {
                         searchCity(inputCity);
-                        //addNewCity(inputCity);
                     }
                 }
             });
+
+            //监听点击搜索按钮
+            document.getElementById('search_btn').addEventListener('click', function() {
+                let inputCity = document.getElementsByTagName('input')[0].value.trim();
+                //回车后新增一个城市
+                if (!(inputCity == '')) {
+                    searchCity(inputCity);
+                }
+            });
+
 
             //监听点击城市列表项
             //let cityList = document.getElementsByClassName('square');
