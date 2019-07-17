@@ -138,6 +138,10 @@
                 document.getElementById('city_list').innerHTML = '';
             });
 
+            document.addEventListener('touchend', function() {
+                document.getElementById('city_list').innerHTML = '';
+            });
+
             //刷新页面后读取sessionStorage
             pageReload();
             // var footer = document.getElementsByTagName('footer')[0];
