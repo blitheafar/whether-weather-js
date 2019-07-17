@@ -1,7 +1,6 @@
 /* body * {
     border: red 1px solid;
 } */
-
 html * {
     font-family: PingFangSC-Thin, sans-serif;
 }
@@ -66,7 +65,7 @@ header>div>input {
     padding-left: 10px;
 }
 
-#city_list>li:hover{
+#city_list>li:hover {
     background-color: #eeeeee;
 }
 
@@ -219,4 +218,29 @@ footer>div>i {
 
 .level_6 {
     background-color: BROWN;
+}
+
+#about_site {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: #bdbdbd;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+    margin: 10px;
+}
+
+#about_site>a:hover {
+    color: #9e9e9e;
+}
+
+#about_site>span {
+    color: #ffffff;
+    line-height: 20px;
+    font-size: 12px;
 }
