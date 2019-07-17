@@ -162,44 +162,10 @@
 
             //刷新页面后读取sessionStorage
             pageReload();
-            // var footer = document.getElementsByTagName('footer')[0];
-            // //设置天气个数
-            // var cityCount = 8;
-            // for (var i = 0; i < cityCount; i++) {
-            //     var node = document.createElement('div');
-            //     node.setAttribute('class', 'square');
-            //     node.innerHTML = '<img class="sunny"><div>北京</div><div>23</div>';
-            //     footer.appendChild(node);
-            // }
 
             let _userIP = returnCitySN["cip"];
             loadTodayWeatherByIP(_userIP);
             loadWeekWeatherByIP(_userIP);
-
-            //监听input，回车事件
-            // document.getElementsByTagName('input')[0].addEventListener('keypress', function(e) {
-            //     var key = e.which || e.keyCode;
-            //     if (key === 13) { // 13 is enter
-            //         let inputCity = document.getElementsByTagName('input')[0].value.trim();
-            //         //回车后新增一个城市
-            //         if (!(inputCity == '')) {
-            //             matchCity(inputCity);
-            //         }
-            //     }
-            // });
-
-            //监听点击搜索按钮
-            // document.getElementById('search_btn').addEventListener('click', function() {
-            //     let inputCity = document.getElementsByTagName('input')[0].value.trim();
-            //     //回车后新增一个城市
-            //     if (!(inputCity == '')) {
-            //         requestCity(inputCity);
-            //     }
-            // });
-
-
-            //监听点击城市列表项
-
         }
     </script>
     <script type="text/javascript">
