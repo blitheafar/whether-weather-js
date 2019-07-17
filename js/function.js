@@ -1,3 +1,12 @@
+//页面点击事件判断
+//const Button = document.getElementById("targetButton")
+const clickEvent = (function() {
+    if ('ontouchend' in document.documentElement === true)
+        return 'touchend';
+    else
+        return 'click';
+})();
+
 //清除输入
 function removeIput() {
     document.getElementsByTagName('input')[0].value = '';
@@ -83,7 +92,7 @@ function loadCity(data) {
             //过长字符处理
             city_list_node.innerText = _text;
             //添加监听
-            city_list_node.addEventListener('click', function(event) {
+            city_list_node.addEventListener(clickEvent, function(event) {
                 //取得cityid
                 let cityid = this.getAttribute('city-id');
                 //在本地json文件匹配城市

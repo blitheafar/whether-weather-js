@@ -133,15 +133,8 @@
     <script type="text/javascript" src="js/match.js"></script>
     <script type="text/javascript">
         window.onload = function() {
-            //点击其他区域隐藏搜索结果下拉列表
-            document.addEventListener('click', function() {
-                //清除列表
-                document.getElementById('city_list').innerHTML = '';
-            });
-
-            document.addEventListener('touchend', function() {
-                document.getElementById('city_list').innerHTML = '';
-            });
+            //刷新页面后读取sessionStorage
+            pageReload();
 
             //中文输入完毕后监听
             var typing = false;
@@ -152,7 +145,7 @@
                 typing = false;
             })
             document.getElementById('input_key').addEventListener('input', function() {
-                let _self=this;
+                let _self = this;
                 setTimeout(function() {
                     if (!typing) {
                         preRequestCity(_self.value);
@@ -160,9 +153,12 @@
                 }, 0);
             })
 
-            //刷新页面后读取sessionStorage
-            pageReload();
+            //点击其他区域隐藏搜索结果下拉列表
+            document.addEventListener(clickEvent, function() {
+                document.getElementById('city_list').innerHTML = '';
+            });
 
+            //取得jsonp返回ip
             let _userIP = returnCitySN["cip"];
             loadTodayWeatherByIP(_userIP);
             loadWeekWeatherByIP(_userIP);
