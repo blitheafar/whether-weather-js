@@ -69,16 +69,16 @@ function airRichMatch(value) {
         case '良':
             match = '{level_2|良}';
             break;
-        case '轻度污染':
+        case '轻度':
             match = '{level_3|轻度}';
             break;
-        case '中度污染':
+        case '中度':
             match = '{level_4|中度}';
             break;
-        case '重度污染':
+        case '重度':
             match = '{level_5|重度}';
             break;
-        case '严重污染':
+        case '严重':
             match = '{level_6|严重}';
             break;
         default:
