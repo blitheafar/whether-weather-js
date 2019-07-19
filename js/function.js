@@ -42,7 +42,7 @@ function preRequestCity(value) {
         //console.log(value);
         clearCityList();
         requestCity(value);
-    }, 500);
+    }, 600);
 }
 
 function clearCityList() {
