@@ -53,7 +53,7 @@ header>div>input {
 
 #city_list {
     position: absolute;
-    top: 43px;
+    top: 41px;
     left: calc(50% - 125px);
     z-index: 999;
     display: flex;
@@ -64,7 +64,6 @@ header>div>input {
     padding: 0;
     border-left: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
-    background-color: #ffffff;
 }
 
 #city_list>li {
