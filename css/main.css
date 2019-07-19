@@ -24,6 +24,7 @@ body {
 header {
     display: flex;
     flex-direction: column;
+    min-height: 50px;
 }
 
 header>div {
@@ -103,6 +104,7 @@ header>div>i:first-child {
 main {
     display: flex;
     justify-content: center;
+    min-height: 240px;
 }
 
 .main-container {
