@@ -19,6 +19,8 @@
         transform: scale(0.7);
         display: inline-block;
         line-height: 10px;
+        min-width: 85px;
+        text-align: center;
     }
 
     .square>div:last-child {

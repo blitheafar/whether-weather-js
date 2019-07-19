@@ -260,7 +260,12 @@ function createCityNode(_singleCity) {
     node.setAttribute("cityid", _singleCity.cityid);
     //匹配天气图标
     let wea_logo = logoMatch(_singleCity.wea_img);
-    node.innerHTML = '<img class="' + wea_logo + '" alt="' + wea_logo + '"><div><span>' + _singleCity.city + '</span><span>/</span><span>' + _singleCity.wea + '</span></div><div>' + _singleCity.tem + '°C</div>';
+    //处理过长城市名
+    let city_name=_singleCity.city;
+    if (city_name.length>4) {
+        city_name=city_name.substr(0,3)+'...';
+    }
+    node.innerHTML = '<img class="' + wea_logo + '" alt="' + wea_logo + '"><div><span>' + city_name + '</span><span>/</span><span>' + _singleCity.wea + '</span></div><div>' + _singleCity.tem + '°C</div>';
     //给底部城市列表添加点击事件
     node.addEventListener('click', function(event) {
         //清除其他城市选中效果
