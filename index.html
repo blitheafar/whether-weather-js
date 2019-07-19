@@ -22,60 +22,61 @@
     <div id="jsonp-area">
     </div>
 
-    <!-- <div class="page"> -->
-    <!-- 顶部搜索栏 -->
-    <header>
-        <div>
-            <i class="fa fa-search fa-lg" id="search_btn"></i>
-            <input id="input_key" type="text" placeholder="输入地区名搜索">
-            <!-- <input id="input_key" type="text" placeholder="输入地区名搜索" oninput="preRequestCity(this.value)"> -->
-            <i id="ipt_delete" class="fa fa-times-circle fa-lg" onclick="removeIput()"></i>
-        </div>
-        <ul id="city_list">
-        </ul>
-    </header>
+    <div class="container">
+        <div class="page">
+            <!-- 顶部搜索栏 -->
+            <header>
+                <div>
+                    <i class="fa fa-search fa-lg" id="search_btn"></i>
+                    <input id="input_key" type="text" placeholder="输入地区名搜索">
+                    <!-- <input id="input_key" type="text" placeholder="输入地区名搜索" oninput="preRequestCity(this.value)"> -->
+                    <i id="ipt_delete" class="fa fa-times-circle fa-lg" onclick="removeIput()"></i>
+                </div>
+                <ul id="city_list">
+                </ul>
+            </header>
 
-    <main>
-        <div class="main-container">
-            <div class="main-top">
-                <span class="main-left">
-                    <i class="fa fa-map-marker fa-lg"></i>
-                    <span id="now_city">-</span>
-                </span>
-                <span class="main-right">
-                    <span id="update_time">--:--</span>
-                    <span>更新</span>
-                </span>
-            </div>
+            <main>
+                <div class="main-container">
+                    <div class="main-top">
+                        <span class="main-left">
+                            <i class="fa fa-map-marker fa-lg"></i>
+                            <span id="now_city">-</span>
+                        </span>
+                        <span class="main-right">
+                            <span id="update_time">--:--</span>
+                            <span>更新</span>
+                        </span>
+                    </div>
 
-            <div class="main-main">
-                <span id="now_tem">-</span>
-                <span>
-                    <span id="now_wea">-</span>
-                    <span>/</span>
-                    <span id="now_win">-</span>
-                </span>
-                <span id="now_air_container">
-                    <span id="now_air">-</span>
-                    <span id="now_air_level">-</span>
-                </span>
-            </div>
+                    <div class="main-main">
+                        <span id="now_tem">-</span>
+                        <span>
+                            <span id="now_wea">-</span>
+                            <span>/</span>
+                            <span id="now_win">-</span>
+                        </span>
+                        <span id="now_air_container">
+                            <span id="now_air">-</span>
+                            <span id="now_air_level">-</span>
+                        </span>
+                    </div>
 
-            <div class="main-bottom">
-                <span class="main-left">
-                    <span>今天:</span>
-                    <span id="now_today_wea">-</span>
-                </span>
-                <span class="main-right">
-                    <span id="now_low_tem">-</span>~<span id="now_high_tem">-</span>°C
-                </span>
-            </div>
-        </div>
-    </main>
+                    <div class="main-bottom">
+                        <span class="main-left">
+                            <span>今天:</span>
+                            <span id="now_today_wea">-</span>
+                        </span>
+                        <span class="main-right">
+                            <span id="now_low_tem">-</span>~<span id="now_high_tem">-</span>°C
+                        </span>
+                    </div>
+                </div>
+            </main>
 
-    <div id="wea_chart"></div>
+            <div id="wea_chart"></div>
 
-    <!-- <main>
+            <!-- <main>
         <div class="main-container">
             <div class="main-top">
                 <span class="main-left">
@@ -114,8 +115,8 @@
     </main> -->
 
 
-    <footer>
-        <!-- <div class="square">
+            <footer>
+                <!-- <div class="square">
                 <img class="sunny" alt="">
                 <div>
                     <span>北京</span>
@@ -124,15 +125,18 @@
                 </div>
                 <div>23°C</div>
             </div> -->
-    </footer>
-    <!-- </div> -->
+            </footer>
+        </div>
 
-    <div id="about_site">
-        <a class="fa fa-github fa-lg" href="https://github.com/BlitheAnon" title="GitHub icon" target="_blank"></a>
-        <span>Whether-Weather / Version: 1.02</span>
-        <!-- <span>Power by JS</span> -->
-        <span>© 2019 Blithe</span>
+        <div id="about_site">
+            <a class="fa fa-github fa-lg" href="https://github.com/BlitheAnon" title="GitHub icon" target="_blank"></a>
+            <span>Whether-Weather / Version: 1.02</span>
+            <!-- <span>Power by JS</span> -->
+            <span>© 2019 Blithe</span>
+        </div>
+
     </div>
+
 
     <!-- 提示框 -->
     <div id="snackbar">添加成功</div>
