@@ -246,6 +246,13 @@ footer>div>i {
     align-items: center;
 }
 
+#about_site>span:first-child{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 a {
     text-decoration: none;
     color: #ffffff;
@@ -258,6 +265,5 @@ a {
 
 #about_site>span {
     color: #ffffff;
-    line-height: 20px;
     font-size: 12px;
 }
