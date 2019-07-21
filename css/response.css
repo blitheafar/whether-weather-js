@@ -27,44 +27,7 @@
         padding-bottom: 5px;
     }
 
-    .sunny {
+    .wea_logo{
         width: 40px;
-        content: url('../images/sunny.svg');
     }
-
-    .snow {
-        width: 40px;
-        content: url('../images/snow.svg');
-    }
-
-    .dust {
-        width: 40px;
-        content: url('../images/dust.svg');
-    }
-
-    .fog {
-        width: 40px;
-        content: url('../images/fog.svg');
-    }
-
-    .hail {
-        width: 40px;
-        content: url('../images/hail.svg');
-    }
-
-    .cloud {
-        width: 40px;
-        content: url('../images/cloud.svg');
-    }
-
-    .rain {
-        width: 40px;
-        content: url('../images/rain.svg');
-    }
-
-    .cloudy {
-        width: 40px;
-        content: url('../images/cloudy.svg');
-    }
-
 }
