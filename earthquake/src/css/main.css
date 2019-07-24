@@ -1,0 +1,170 @@
+.list{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.single-item{
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    border-bottom: 1px solid #e0e0e0;
+    align-items: center;
+}
+
+/* 等级圆圈样式 */
+.mag-circle-container{
+    width: 50px;
+    display: flex;
+    align-items: center;
+}
+.mag-circle{
+    font-style: normal;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 16px;
+    border: 1px solid #eeeeee;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #757575;
+}
+
+.mag-right-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* 地震地区样式 */
+.single-item-middle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.area-main{
+    font-size: 12px;
+}
+
+.area-sub{
+    font-size: 10px;
+    color: #bdbdbd;
+}
+
+.single-item-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.item-time{
+    font-size: 10px;
+}
+
+.item-mag{
+    font-size: 12px;
+}
+
+/* #test{
+    position:fixed;
+    z-index: 98;
+    width: 100px;
+    height: 100px;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    background-color: green;
+} */
+
+/* 隐藏加载动画 */
+.hide-loading{
+    display: none;
+}
+
+#preloader_1{
+    position:fixed;
+    z-index: 99;
+    top: calc(50% - 15px);
+    left: calc(50% - 26.5px);
+}
+#preloader_1 span{
+    display:block;
+    bottom:0px;
+    width: 9px;
+    height: 5px;
+    background:#bdbdbd;
+    position:absolute;
+    animation: preloader_1 1.5s  infinite ease-in-out;
+}
+#preloader_1 span:nth-child(2){
+    left:11px;
+    animation-delay: .2s;
+}
+#preloader_1 span:nth-child(3){
+    left:22px;
+    animation-delay: .4s;
+}
+#preloader_1 span:nth-child(4){
+    left:33px;
+    animation-delay: .6s;
+}
+#preloader_1 span:nth-child(5){
+    left:44px;
+    animation-delay: .8s;
+}
+@keyframes preloader_1 {
+    0% {height:5px;transform:translateY(0px);background:#bdbdbd;}
+    25% {height:30px;transform:translateY(15px);background:#000000;}
+    50% {height:5px;transform:translateY(0px);background:#bdbdbd;}
+    100% {height:5px;transform:translateY(0px);background:#bdbdbd;}
+}
+
+.level-1{
+    background-color: #ffffff;
+}
+
+.level-2{
+    background-color: #bfcdfe;
+}
+
+.level-3{
+    background-color: #9b98ff;
+}
+
+.level-4{
+    background-color: #7bfffb;
+}
+
+.level-5{
+    background-color: #7bfd7f;
+}
+
+.level-6{
+    background-color: #feff01;
+}
+
+.level-7{
+    background-color: #ffc700;
+}
+
+.level-8{
+    background-color: #ff9100;
+}
+
+.level-9{
+    background-color: #ff0000;
+}
+
+.level-10{
+    background-color: #c90101;
+}
+
+.level-11{
+    background-color: #840000;
+}
+
+.level-12{
+    background-color: #3e0001;
+}
