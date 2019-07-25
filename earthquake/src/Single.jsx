@@ -1,6 +1,8 @@
 //单个地震显示
 import React, {Component} from 'react';
 import './css/main.css';
+import {Link} from 'react-router-dom';
+
 class Single extends Component {
     state = {
         earthquakeArr: []
@@ -119,11 +121,18 @@ class Single extends Component {
         return color;
     }
 
+    //显示坐标
+    showLocation=(name,e)=>{
+        e.preventDefault();
+        console.log(name);
+    }
+
     render() {
         const {earthquakeArr} = this.state;
         return (<ul className="list">
             {
-                earthquakeArr.map((item, index) => (<li className="single-item" key={index}>
+                earthquakeArr.map((item, index) => (<li className="single-item" key={index} onClick={this.showLocation.bind(this,item.geometry.coordinates)}>
+                <Link className='single_link clean-link-style' to="/map">
                     <div className="mag-circle-container">
                         <i className={`mag-circle ${this.matchMagColor(item.properties.mag)}`}>{this.trimMag(item.properties.mag)}</i>
                     </div>
@@ -142,10 +151,10 @@ class Single extends Component {
                         </div>
                         <div className="single-item-right">
                             <span className="item-time">{this.unixTimeFormat(item.properties.time)}</span>
-                            <span className="item-mag">震源深度:{item.geometry.coordinates[2]}km</span>
+                            <span className="item-mag">震源深度:{item.geometry.coordinates[2].toFixed(2)}km</span>
                         </div>
                     </div>
-                </li>))
+                </Link></li>))
             }
         </ul>)
     }

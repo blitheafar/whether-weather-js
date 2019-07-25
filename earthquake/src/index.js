@@ -4,6 +4,9 @@ import React from 'react';
 // import {render} from 'react-dom';
 import ReactDom from 'react-dom';
 
+//引入BrowserRouter组件
+import {BrowserRouter} from 'react-router-dom'
+
 import App from './App';
 import News from './News';
 import EarthquakeApp from './EarthquakeApp';
@@ -20,4 +23,4 @@ const root=document.querySelector('#root');
 
 //渲染react dom进html dom
 // render(<HelloWorld/>,root);
-ReactDom.render(<EarthquakeApp/>,root);
+ReactDom.render(<BrowserRouter><EarthquakeApp/></BrowserRouter>,root);
