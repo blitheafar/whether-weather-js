@@ -124,7 +124,9 @@ class Single extends Component {
     //显示坐标
     showLocation=(name,e)=>{
         e.preventDefault();
-        console.log(name);
+        //console.log(name);
+        //传值到父组件
+        this.props.getGeoLocation(name);
     }
 
     render() {

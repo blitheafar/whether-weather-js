@@ -221,3 +221,10 @@ li{
 .level-12{
     background-color: #3e0001;
 }
+
+/* 地图组件css */
+.map-container{
+    width: 100%;
+    height: 400px;
+    margin-top: 51px;
+}

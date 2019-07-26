@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 //引入地震列表组件
 import Single from './Single';
+
 //引入载入动画组件
 import Loading from './Loading';
 //地图组件页
@@ -21,18 +22,27 @@ class EarthquakeApp extends Component {
         this.setState({loading: false})
     }
 
+    //钩子函数，取得子组件点击的经纬度
+    getGeoLocation = (_coordinates) => {
+        //console.log(_coordinates);
+        //设置state经纬度
+        this.setState({coordinates: _coordinates})
+    }
+
     render() {
         const {loading} = this.state;
         return (<div>
-            <Route path="/" exact render={() => (<div>
+            <Route path="/" exact={true} render={() => (<div>
                     <div id="title_bar">
                         <span id="back">天气</span>
                         <span>实况地震</span>
-                        <Link className="clean-link-style" to="/setting"><span id="setting">设置</span></Link>
+                        <Link className="clean-link-style" to="/setting">
+                            <span id="setting">设置</span>
+                        </Link>
                     </div>
-                    <Single hideLoading={this.hideLoading}/>
+                    <Single hideLoading={this.hideLoading} getGeoLocation={this.getGeoLocation}/>
                     <Loading loading={loading}/></div>)}/>
-            <Route path="/map/" render={() => (<EarthQuakeMap/>)}/>
+            <Route path="/map/" render={() => (<EarthQuakeMap sendCoordinates={this.state.coordinates}/>)}/>
             <Route path="/setting/" render={() => (<Setting/>)}/>
         </div>)
     }
