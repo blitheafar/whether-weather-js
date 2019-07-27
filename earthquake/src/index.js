@@ -10,6 +10,10 @@ import {BrowserRouter} from 'react-router-dom'
 import App from './App';
 import News from './News';
 import EarthquakeApp from './EarthquakeApp';
+import Setting from './Setting';
+
+//测试组件
+import Test from './Test';
 
 
 //引入helloworld组件
@@ -23,4 +27,5 @@ const root=document.querySelector('#root');
 
 //渲染react dom进html dom
 // render(<HelloWorld/>,root);
+// ReactDom.render(<BrowserRouter><EarthquakeApp/></BrowserRouter>,root);
 ReactDom.render(<BrowserRouter><EarthquakeApp/></BrowserRouter>,root);

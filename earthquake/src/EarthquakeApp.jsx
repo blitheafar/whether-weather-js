@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import {Switch} from 'react-router-dom';
 
 //引入地震列表组件
 import Single from './Single';
@@ -14,7 +15,10 @@ import Setting from './Setting';
 
 class EarthquakeApp extends Component {
     state = {
-        loading: true
+        loading: true,
+        orderby: 'time',
+        minMag: 4,
+        maxMag: 10
     }
 
     //钩子函数，用于隐藏加载动画
@@ -29,21 +33,30 @@ class EarthquakeApp extends Component {
         this.setState({coordinates: _coordinates})
     }
 
+    //钩子函数，处理地震请求参数
+    handleSettingData = (_orderby, _minMag, _maxMag) => {
+        console.log(_orderby, _minMag, _maxMag);
+        //更新参数
+        this.setState({loading: true, orderby: _orderby, minMag: _minMag, maxMag: _maxMag})
+    }
+
     render() {
-        const {loading} = this.state;
+        const {loading, orderby, minMag, maxMag} = this.state;
         return (<div>
-            <Route path="/" exact={true} render={() => (<div>
-                    <div id="title_bar">
-                        <span id="back">天气</span>
-                        <span>实况地震</span>
-                        <Link className="clean-link-style" to="/setting">
-                            <span id="setting">设置</span>
-                        </Link>
-                    </div>
-                    <Single hideLoading={this.hideLoading} getGeoLocation={this.getGeoLocation}/>
-                    <Loading loading={loading}/></div>)}/>
-            <Route path="/map/" render={() => (<EarthQuakeMap sendCoordinates={this.state.coordinates}/>)}/>
-            <Route path="/setting/" render={() => (<Setting/>)}/>
+            <Switch>
+                <Route path="/" exact={true} render={() => (<div>
+                        <div id="title_bar">
+                            <span id="back">天气</span>
+                            <span>实况地震</span>
+                            <Link className="clean-link-style" to="/setting">
+                                <span id="setting">设置</span>
+                            </Link>
+                        </div>
+                        <Single hideLoading={this.hideLoading} orderby={orderby} minMag={minMag} maxMag={maxMag} getGeoLocation={this.getGeoLocation}/>
+                        <Loading loading={loading}/></div>)}/>
+                <Route path="/map" render={() => (<EarthQuakeMap sendCoordinates={this.state.coordinates}/>)}/>
+                <Route path="/setting" render={() => (<Setting orderby={orderby} minMag={minMag} maxMag={maxMag} showLoading={this.showLoading} handleSettingData={this.handleSettingData}/>)}/>
+            </Switch>
         </div>)
     }
 }

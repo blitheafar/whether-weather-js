@@ -57,6 +57,31 @@ li{
     align-items: center;
 }
 
+.setting-item{
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    border-bottom: 1px solid #e0e0e0;
+    align-items: center;
+}
+
+.setting-item>span{
+    color: #9e9e9e;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.setting-item>input{
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    color: #9e9e9e;
+}
+
+.setting-item>input::-webkit-input-placeholder{
+    color: #9e9e9e;
+}
+
 .clean-link-style{
     text-decoration: none;
     color: #000000;
