@@ -253,3 +253,14 @@ li{
     height: 400px;
     margin-top: 51px;
 }
+
+/* 空页面提示 */
+#empty_hint{
+    position:fixed;
+    z-index: -1;
+    width: 120px;
+    top: 50%;
+    left: calc(50% - 60px);
+    color: #bdbdbd;
+    text-align: center;
+}

@@ -12,6 +12,7 @@ import Setting from './Setting';
 
 //测试组件
 import Test from './Test';
+import Blank from './Blank';
 
 
 //引入helloworld组件

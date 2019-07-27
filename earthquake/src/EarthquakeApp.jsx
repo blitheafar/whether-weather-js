@@ -12,10 +12,13 @@ import Loading from './Loading';
 import EarthQuakeMap from './Map';
 //设置组件页
 import Setting from './Setting';
+//空白提示组件页
+import Blank from './Blank';
 
 class EarthquakeApp extends Component {
     state = {
         loading: true,
+        showBlank: false,
         orderby: 'time',
         minMag: 4,
         maxMag: 10
@@ -24,6 +27,12 @@ class EarthquakeApp extends Component {
     //钩子函数，用于隐藏加载动画
     hideLoading = () => {
         this.setState({loading: false})
+    }
+
+    isShowBlank=(_state)=>{
+        this.setState({
+            showBlank: _state,
+        })
     }
 
     //钩子函数，取得子组件点击的经纬度
@@ -37,11 +46,11 @@ class EarthquakeApp extends Component {
     handleSettingData = (_orderby, _minMag, _maxMag) => {
         //console.log(_orderby, _minMag, _maxMag);
         //更新参数
-        this.setState({loading: true, orderby: _orderby, minMag: _minMag, maxMag: _maxMag})
+        this.setState({loading: true,showBlank:false, orderby: _orderby, minMag: _minMag, maxMag: _maxMag})
     }
 
     render() {
-        const {loading, orderby, minMag, maxMag} = this.state;
+        const {loading,showBlank, orderby, minMag, maxMag} = this.state;
         return (<div>
             <Switch>
                 <Route path="/" exact={true} render={() => (<div>
@@ -52,8 +61,10 @@ class EarthquakeApp extends Component {
                                 <span id="setting">设置</span>
                             </Link>
                         </div>
-                        <Single hideLoading={this.hideLoading} orderby={orderby} minMag={minMag} maxMag={maxMag} getGeoLocation={this.getGeoLocation}/>
-                        <Loading loading={loading}/></div>)}/>
+                        <Single isShowBlank={this.isShowBlank} hideLoading={this.hideLoading} orderby={orderby} minMag={minMag} maxMag={maxMag} getGeoLocation={this.getGeoLocation}/>
+                        <Loading loading={loading}/>
+                        <Blank showBlank={showBlank}/>
+                    </div>)}/>
                 <Route path="/map" render={() => (<EarthQuakeMap sendCoordinates={this.state.coordinates}/>)}/>
                 <Route path="/setting" render={() => (<Setting orderby={orderby} minMag={minMag} maxMag={maxMag} showLoading={this.showLoading} handleSettingData={this.handleSettingData}/>)}/>
             </Switch>

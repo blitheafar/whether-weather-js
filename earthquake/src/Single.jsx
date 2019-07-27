@@ -29,6 +29,13 @@ class Single extends Component {
             //console.log(myJson);
             //设置地震列表
             this.setState({earthquakeArr: myJson.features})
+            //判断返回数据是否为空
+            if (myJson.features.length===0) {
+                this.props.isShowBlank(true);
+            }else{
+                this.props.isShowBlank(false);
+            }
+            //console.log(myJson.features===[]?this.props.showBlank():{});
         }).then(() => {
             //调用父组件钩子函数，隐藏加载动画
             this.props.hideLoading();
