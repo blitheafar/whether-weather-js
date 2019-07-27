@@ -8,7 +8,19 @@ class Single extends Component {
         earthquakeArr: []
     }
     componentDidMount() {
-        let api = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-07-22&minmagnitude=4&orderby=time&limit=30';
+        //取得父组件的参数，
+        const orderby=this.props.orderby;
+        const minMag=this.props.minMag;
+        const maxMag=this.props.maxMag;
+        //取得今天
+        let yesterday=new Date();
+        yesterday.setTime(yesterday.getTime()-24*60*60*1000);
+        let _month=yesterday.getMonth()+1;
+        _month=_month>9?_month:'0'+_month;
+        let _date=yesterday.getDate();
+        _date=_date>9?_date:'0'+_date;
+        yesterday=yesterday.getFullYear()+'-'+_month+'-'+_date;
+        let api = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime='+yesterday+'&minmagnitude='+minMag+'&maxmagnitude='+maxMag+'&orderby='+orderby+'&limit=30';
         //fetch请求地震数据
         fetch(api).then((response) => {
             //console.log(response);

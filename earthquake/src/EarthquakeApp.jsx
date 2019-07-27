@@ -35,7 +35,7 @@ class EarthquakeApp extends Component {
 
     //钩子函数，处理地震请求参数
     handleSettingData = (_orderby, _minMag, _maxMag) => {
-        console.log(_orderby, _minMag, _maxMag);
+        //console.log(_orderby, _minMag, _maxMag);
         //更新参数
         this.setState({loading: true, orderby: _orderby, minMag: _minMag, maxMag: _maxMag})
     }
