@@ -7,8 +7,6 @@ import ReactDom from 'react-dom';
 //引入BrowserRouter组件
 import {BrowserRouter} from 'react-router-dom'
 
-import App from './App';
-import News from './News';
 import EarthquakeApp from './EarthquakeApp';
 import Setting from './Setting';
 
