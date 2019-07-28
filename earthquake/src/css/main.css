@@ -3,6 +3,10 @@ body{
     padding: 0;
 }
 
+html * {
+    font-family: PingFangSC-Thin, sans-serif;
+}
+
 #title_bar{
     position: fixed;
     top: 0;
@@ -14,6 +18,11 @@ body{
     display: flex;
     justify-content:space-between;
     align-items: center;
+}
+
+#title_bar>a{
+    text-decoration: none;
+    color: #000000;
 }
 
 #back,#map_back,#setting_back{

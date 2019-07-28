@@ -5,14 +5,12 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 //引入BrowserRouter组件
-import {BrowserRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 
 import EarthquakeApp from './EarthquakeApp';
-import Setting from './Setting';
 
 //测试组件
 import Test from './Test';
-import Blank from './Blank';
 
 
 //引入helloworld组件
@@ -27,4 +25,4 @@ const root=document.querySelector('#root');
 //渲染react dom进html dom
 // render(<HelloWorld/>,root);
 // ReactDom.render(<BrowserRouter><EarthquakeApp/></BrowserRouter>,root);
-ReactDom.render(<BrowserRouter><EarthquakeApp/></BrowserRouter>,root);
+ReactDom.render(<HashRouter><EarthquakeApp/></HashRouter>,root);

@@ -55,7 +55,7 @@ class EarthquakeApp extends Component {
             <Switch>
                 <Route path="/" exact={true} render={() => (<div>
                         <div id="title_bar">
-                            <span id="back">天气</span>
+                            <a href="../../index.html" target="_self"><span id="back">天气</span></a>
                             <span>实况地震</span>
                             <Link className="clean-link-style" to="/setting">
                                 <span id="setting">设置</span>

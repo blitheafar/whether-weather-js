@@ -17,6 +17,7 @@ class EarthQuakeMap extends Component {
     }
 
     render() {
+
         const coordinates = {
             longitude: this.props.sendCoordinates[0],
             latitude: this.props.sendCoordinates[1]
