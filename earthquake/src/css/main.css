@@ -81,6 +81,7 @@ li{
 }
 
 .setting-item>input{
+    flex: 1;
     margin-left: 10px;
     outline: none;
     border: none;
