@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 //页面点击事件判断
 //const Button = document.getElementById("targetButton")
 const clickEvent = (function() {
