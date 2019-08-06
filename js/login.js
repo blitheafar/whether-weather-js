@@ -77,7 +77,7 @@ loginBtn.addEventListener('click', function() {
 
     //保存用户到服务器
     let api = "http://www.blitheanon.com:3000/api/login?";
-    api += "account=" + id + "&" + "password=" + pw;
+    api += "account=" + id + "&password=" + pw;
     fetch(api,{
         method: 'GET'
     }).then((response) => {
@@ -85,6 +85,8 @@ loginBtn.addEventListener('click', function() {
     }).then((myjson) => {
         console.log(myjson);
         if (myjson.result==='success') {
+            //存储用户信息
+            sessionStorage.setItem('user_account',id);
             alert("登录成功");
             //登陆成功关闭界面
             document.getElementById('login_part').style.display='none';
