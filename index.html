@@ -28,7 +28,8 @@
             <!-- 顶部搜索栏 -->
             <header>
                 <div>
-                    <i class="fa fa-search fa-lg" id="search_btn"></i>
+                    <i class="fa fa-user-circle fa-lg" id="user_not_login"></i>
+                    <i class="fa fa-user-circle fa-lg" id="user_login_in" style="color: #9ccc65;display: none"></i>
                     <input id="input_key" type="text" placeholder="输入地区名搜索">
                     <!-- <input id="input_key" type="text" placeholder="输入地区名搜索" oninput="preRequestCity(this.value)"> -->
                     <i id="ipt_delete" class="fa fa-times-circle fa-lg" onclick="removeIput()"></i>
@@ -88,6 +89,7 @@
                 <div>23°C</div>
             </div> -->
             </footer>
+
         </div>
 
         <div id="about_site">
@@ -106,10 +108,42 @@
     <!-- 提示框 -->
     <div id="snackbar">添加成功</div>
 
+    <!-- 登录框 -->
+    <div class="login-part" id="login_part" style="display:none">
+        <div class="close-container"><i id="login_close" class="fa fa-times-circle fa-lg" onclick="closeLogin()"></i></div>
+        <div class="input-container">
+            <input id="id" type="text" name="" value="admin" placeholder="账号">
+        </div>
+        <div class="input-container">
+            <span></span><input id="pw1" type="password" name="" value="admin" placeholder="密码">
+        </div>
+        <div class="input-container" id="pw2Container" style="display: none">
+            <span></span><input id="pw2" type="password" name="" value="" placeholder="确认密码">
+        </div>
+        <button type="button" name="button" id="login">登录</button>
+        <button type="button" name="button" id="register" style="display: none">注册</button>
+
+
+        <button type="button" name="button" id="to_register">注册</button>
+        <button type="button" name="button" id="to_login" style="display:none">登录</button>
+    </div>
+
+    <!-- 数据同步框 -->
+    <div class="synchro-part" id="synchro_part" style="display:none">
+        <div class="close-container"><i id="synchro_close" class="fa fa-times-circle fa-lg" onclick="closeSynchro()"></i></div>
+
+        <button type="button" name="button" id="uploadcity">上传城市</button>
+        <button type="button" name="button" id="downloadcity">同步城市</button>
+        <button type="button" name="button" id="loginout" onclick="logout()">退出登录</button>
+    </div>
+
     <!-- 取得访问者ip -->
     <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
     <script type="text/javascript" src="js/function.js"></script>
     <script type="text/javascript" src="js/match.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/synchroData.js"></script>
+    <script type="text/javascript" src="js/logout.js"></script>
     <script type="text/javascript">
         window.onload = function() {
             //刷新页面后读取sessionStorage

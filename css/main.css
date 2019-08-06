@@ -41,13 +41,16 @@ header>div {
 }
 
 header>div>input {
+    margin: 0 10px;
+    padding: 0 10px;
+}
+
+input{
     width: 230px;
     height: 30px;
     outline: none;
     border: none;
     border-bottom: 1px solid #e0e0e0;
-    margin: 0 10px;
-    padding: 0 10px;
     font-size: 15px;
 }
 
@@ -98,7 +101,7 @@ header>div>i:first-child {
     text-align: right;
 }
 
-#ipt_delete:hover {
+.fa-times-circle:hover {
     color: #e64a19;
 }
 
@@ -266,4 +269,90 @@ a {
 #about_site>span {
     color: #ffffff;
     font-size: 12px;
+}
+
+.login-part{
+    position: fixed;
+    z-index: 99;
+    top: calc(50% - 200px);
+    left: calc(50% - 161px);
+    width: 320px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.synchro-part{
+    position: fixed;
+    z-index: 99;
+    top: calc(50% - 200px);
+    left: calc(50% - 161px);
+    width: 320px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close-container{
+    display: flex;
+    justify-content: flex-end;
+    color: #bdbdbd;
+    height: 120px;
+}
+
+#login_close,#synchro_close{
+    position: relative;
+    top: 10px;
+}
+
+#loginout{
+
+}
+
+.input-container>input{
+    width: 300px;
+}
+
+button{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+}
+
+#login,#register,#uploadcity,#downloadcity{
+    width: 300px;
+    height: 35px;
+    background: #e0e0e0;
+    margin-top: 10px;
+}
+
+#login:hover,#register:hover,#uploadcity:hover,#downloadcity:hover{
+    background: #bdbdbd;
+}
+
+#to_register,#to_login,#uploadcity,#downloadcity{
+    margin:10px 0;
+}
+
+#to_login:hover,#to_register:hover{
+    text-decoration: underline;
+}
+
+#loginout{
+    width: 300px;
+    height: 35px;
+    background: #e64a19;
+    margin: 10px 0;
+    color: #ffffff;
+}
+
+#loginout:hover{
+    background: #b71c1c;
 }
