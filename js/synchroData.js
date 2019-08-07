@@ -29,7 +29,7 @@ function uploadcity() {
 function uploadcityServer(_data) {
     //取得登录后用户名
     //let _account = sessionStorage.getItem('user_account');
-    let _account=getCookie('useraccount');
+    let _account=getCookie('login_cookie');
     let uploadcity_api = 'https://www.blitheanon.com:3000/api/upload?';
     uploadcity_api += "account=" + _account + "&cityData=" + _data;
     fetch(uploadcity_api, {
@@ -38,7 +38,7 @@ function uploadcityServer(_data) {
         return response.json();
     }).then((result) => {
         //取得响应结果
-        console.log(result);
+        //console.log(result);
         if (result.result == 'success') {
             alert('上传成功');
         } else {
@@ -50,7 +50,7 @@ function uploadcityServer(_data) {
 //下载城市列表
 function downloadcity() {
     // let _account = sessionStorage.getItem('user_account');
-    let _account = getCookie('useraccount');
+    let _account = getCookie('login_cookie');
     let downloadcity_api = "https://www.blitheanon.com:3000/api/download?";
     downloadcity_api += "account=" + _account;
     fetch(downloadcity_api, {
@@ -58,12 +58,17 @@ function downloadcity() {
     }).then((response) => {
         return response.json();
     }).then((result) => {
+        //console.log(result);
+        //判断同步是否成功
+        if (result.result==='fail') {
+            alert('同步失败，请稍后重试');
+            return;
+        }
         //取得城市数组
         let cityArr = result.result.citylist.split(',');
         let city_json = JSON.parse(sessionStorage.getItem('wea_json'));
         //判断本地城市是否存在
-        //console.log(city_json);
-        if (!null) {
+        if (!city_json) {
             //本地为空，直接同步服务器城市
             cityArr.forEach((_id)=>{
                 loadWeatherByID(_id);
@@ -80,6 +85,8 @@ function downloadcity() {
         cityArr = cityArr.filter(function(val) {
             return local_city_arr.indexOf(val) == -1;
         });
+        console.log('处理后');
+        console.log(cityArr);
         //遍历城市id，请求天气数据，载入进dom
         if (cityArr.length===0) {
             alert('已存在所有数据');

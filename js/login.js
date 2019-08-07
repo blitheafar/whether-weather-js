@@ -83,7 +83,7 @@ loginBtn.addEventListener('click', function() {
     }).then((response) => {
         return response.json();
     }).then((myjson) => {
-        console.log(myjson);
+        // console.log(myjson);
         if (myjson.result === 'success') {
             //存储用户信息
             //sessionStorage.setItem('user_account', id);

@@ -253,8 +253,6 @@ function pageReload() {
     //cookie判断登录状态
     //let login_state=sessionStorage.getItem('user_account');
     let login_state=getCookie('login_cookie');
-    console.log('载入页面');
-    console.log(login_state);
     if (login_state) {
         //已登录
         //切换图标
