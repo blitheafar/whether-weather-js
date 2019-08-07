@@ -28,8 +28,9 @@ function uploadcity() {
 
 function uploadcityServer(_data) {
     //取得登录后用户名
-    let _account = sessionStorage.getItem('user_account');
-    let uploadcity_api = 'http://www.blitheanon.com:3000/api/upload?';
+    //let _account = sessionStorage.getItem('user_account');
+    let _account=getCookie('useraccount');
+    let uploadcity_api = 'https://www.blitheanon.com:3000/api/upload?';
     uploadcity_api += "account=" + _account + "&cityData=" + _data;
     fetch(uploadcity_api, {
         method: 'POST'
@@ -48,8 +49,9 @@ function uploadcityServer(_data) {
 
 //下载城市列表
 function downloadcity() {
-    let _account = sessionStorage.getItem('user_account');
-    let downloadcity_api = "http://www.blitheanon.com:3000/api/download?";
+    // let _account = sessionStorage.getItem('user_account');
+    let _account = getCookie('useraccount');
+    let downloadcity_api = "https://www.blitheanon.com:3000/api/download?";
     downloadcity_api += "account=" + _account;
     fetch(downloadcity_api, {
         method: 'GET'
