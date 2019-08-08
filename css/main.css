@@ -32,7 +32,7 @@ header>div {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #bdbdbd;
     height: 50px;
 }
 
@@ -50,7 +50,7 @@ input{
     height: 30px;
     outline: none;
     border: none;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #bdbdbd;
     font-size: 15px;
 }
 
@@ -65,8 +65,8 @@ input{
     list-style-type: none;
     margin: 0;
     padding: 0;
-    border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #bdbdbd;
+    border-right: 1px solid #bdbdbd;
 }
 
 #city_list>li {
@@ -76,7 +76,7 @@ input{
     width: 240px;
     height: 40px;
     background-color: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #bdbdbd;
     font-size: 15px;
     padding-left: 10px;
 }
@@ -118,10 +118,10 @@ main {
     width: 400px;
     min-width: 280px;
     max-width: 400px;
-    box-shadow: 0 0 10px 5px #bdbdbd;
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
+    border: 1px solid #bdbdbd;
 }
 
 .main-container>div {
@@ -176,7 +176,7 @@ footer {
     align-items: center;
     border-radius: 25px;
     margin: 20px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #bdbdbd;
     /* box-shadow: 0 0 10px 5px #bdbdbd; */
 }
 
@@ -201,8 +201,8 @@ footer {
     display: flex;
     width: 100%;
     min-height: 200px;
-    border-top: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid #bdbdbd;
+    border-bottom: 1px solid #bdbdbd;
     padding: 10px 0;
 }
 
@@ -278,11 +278,11 @@ a {
     left: calc(50% - 161px);
     width: 320px;
     background: #ffffff;
-    border: 1px solid #e0e0e0;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 0 10px 5px #bdbdbd;
 }
 
 .synchro-part{
@@ -292,7 +292,7 @@ a {
     left: calc(50% - 161px);
     width: 320px;
     background: #ffffff;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #bdbdbd;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -329,7 +329,7 @@ button{
 #login,#register,#uploadcity,#downloadcity{
     width: 300px;
     height: 35px;
-    background: #e0e0e0;
+    background: #bdbdbd;
     margin-top: 10px;
 }
 

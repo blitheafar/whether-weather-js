@@ -12,7 +12,6 @@
     background-color: #ffffff;
     /* Black background color */
     border-radius: 10px;
-    border: 1px solid #e0e0e0;
     /* White text color */
     text-align: center;
     /* Centered text */
@@ -27,6 +26,7 @@
     /* Center the snackbar */
     top: 30%;
     /* 50% from the bottom */
+    box-shadow: 0 0 10px 5px #bdbdbd;
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
