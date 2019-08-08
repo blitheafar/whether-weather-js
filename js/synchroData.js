@@ -77,7 +77,7 @@ function downloadcity() {
             cityArr.forEach((_id)=>{
                 loadWeatherByID(_id);
             });
-            //showToast('同步完成');
+            showToast('同步完成');
             return;
         }
         //生成数组

@@ -38,6 +38,7 @@ document.getElementById('to_login').addEventListener('click', function() {
 
 let register = document.getElementById('register');
 register.addEventListener('click', function() {
+    showLoading();
     //注册
     //取得账号密码
     let id = document.getElementById('id').value;
@@ -52,6 +53,7 @@ register.addEventListener('click', function() {
         }).then((response) => {
             return response.json();
         }).then((myjson) => {
+            hideLoading();
             //判断是否注册成功
             if (myjson.result === 'already_exist') {
                 showToast('当前用户名已被使用');
