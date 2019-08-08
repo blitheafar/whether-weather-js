@@ -46,6 +46,10 @@ function uploadcityServer(_data) {
         } else {
             showToast('上传失败');
         }
+    }).catch((error)=>{
+        hideLoading();
+        showToast('连接出错，请稍后重试');
+        console.log(error);
     });
 }
 
@@ -100,5 +104,9 @@ function downloadcity() {
             });
             //showToast('同步完成');
         }
+    }).catch((error)=>{
+        hideLoading();
+        showToast('连接出错，请稍后重试');
+        console.log(error);
     });
 }

@@ -63,6 +63,10 @@ register.addEventListener('click', function() {
                 showToast('未知错误');
             }
 
+        }).catch((error)=>{
+            hideLoading();
+            showToast('连接出错，请稍后重试');
+            console.log(error);
         });
 
     } else {
@@ -105,6 +109,10 @@ loginBtn.addEventListener('click', function() {
             showToast("用户名或密码出错");
         }
         //showToast(myjson.user.accout+myjson.user.password);
+    }).catch((error)=>{
+        hideLoading();
+        showToast('连接出错，请稍后重试');
+        console.log(error);
     });
 });
 
