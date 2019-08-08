@@ -13,7 +13,6 @@
     /* Black background color */
     border-radius: 10px;
     border: 1px solid #e0e0e0;
-    color: #9ccc65;
     /* White text color */
     text-align: center;
     /* Centered text */
@@ -22,7 +21,7 @@
     /* Padding */
     position: fixed;
     /* Sit on top of the screen */
-    z-index: 1;
+    z-index: 9999;
     /* Add a z-index if needed */
     left: 50%;
     /* Center the snackbar */

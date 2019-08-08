@@ -15,7 +15,7 @@ function uploadcity() {
     //判断是否已添加城市
     let city_json = JSON.parse(sessionStorage.getItem('wea_json'));
     if (city_json === null) {
-        alert('请先添加城市');
+        showToast('请先添加城市');
     } else {
         let cityData = city_json.map((item) => {
             return item.cityid;
@@ -27,6 +27,7 @@ function uploadcity() {
 }
 
 function uploadcityServer(_data) {
+    showLoading();
     //取得登录后用户名
     //let _account = sessionStorage.getItem('user_account');
     let _account=getCookie('login_cookie');
@@ -39,16 +40,18 @@ function uploadcityServer(_data) {
     }).then((result) => {
         //取得响应结果
         //console.log(result);
+        hideLoading();
         if (result.result == 'success') {
-            alert('上传成功');
+            showToast('上传成功');
         } else {
-            alert('上传失败');
+            showToast('上传失败');
         }
     });
 }
 
 //下载城市列表
 function downloadcity() {
+    showLoading();
     // let _account = sessionStorage.getItem('user_account');
     let _account = getCookie('login_cookie');
     let downloadcity_api = "https://www.blitheanon.com:3000/api/download?";
@@ -60,8 +63,9 @@ function downloadcity() {
     }).then((result) => {
         //console.log(result);
         //判断同步是否成功
+        hideLoading();
         if (result.result==='fail') {
-            alert('同步失败，请稍后重试');
+            showToast('同步失败，请稍后重试');
             return;
         }
         //取得城市数组
@@ -73,7 +77,7 @@ function downloadcity() {
             cityArr.forEach((_id)=>{
                 loadWeatherByID(_id);
             });
-            alert('同步完成');
+            //showToast('同步完成');
             return;
         }
         //生成数组
@@ -85,16 +89,16 @@ function downloadcity() {
         cityArr = cityArr.filter(function(val) {
             return local_city_arr.indexOf(val) == -1;
         });
-        console.log('处理后');
-        console.log(cityArr);
+        // console.log('处理后');
+        // console.log(cityArr);
         //遍历城市id，请求天气数据，载入进dom
         if (cityArr.length===0) {
-            alert('已存在所有数据');
+            showToast('已存在所有数据');
         }else{
             cityArr.forEach((_id)=>{
                 loadWeatherByID(_id);
             });
-            alert('同步完成');
+            //showToast('同步完成');
         }
     });
 }

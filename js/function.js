@@ -128,7 +128,7 @@ function matchCity(_cid) {
         if (checkCityExist(resultCity[0].id)) {
             alert('城市已添加');
         } else {
-            showToast();
+            showToast("添加成功");
             loadWeatherByID(resultCity[0].id);
         }
     }
@@ -374,12 +374,21 @@ function get7Day() {
     return result;
 }
 
-//城市添加成功弹出框
-function showToast() {
-  // Get the snackbar DIV
+//城市添加成功弹出框,传递显示字符
+function showToast(_text) {
   var x = document.getElementById("snackbar");
+  x.innerText=_text;
   // Add the "show" class to DIV
   x.className = "show";
   // After 3 seconds, remove the show class from DIV
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+//显示加载动画
+function showLoading() {
+    document.getElementById('loading').style.display="flex";
+}
+
+function hideLoading() {
+    document.getElementById('loading').style.display="none";
 }

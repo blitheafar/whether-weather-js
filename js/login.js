@@ -54,22 +54,23 @@ register.addEventListener('click', function() {
         }).then((myjson) => {
             //判断是否注册成功
             if (myjson.result === 'already_exist') {
-                alert('当前用户名已被使用');
+                showToast('当前用户名已被使用');
             } else if (myjson.result === 'success') {
-                alert('注册成功');
+                showToast('注册成功');
             } else {
-                alert('未知错误');
+                showToast('未知错误');
             }
 
         });
 
     } else {
-        alert('两次密码输入不一致');
+        showToast('两次密码输入不一致');
     }
 });
 
 let loginBtn = document.getElementById('login');
 loginBtn.addEventListener('click', function() {
+    showLoading();
     //点击登录
     //取得账号密码
     let id = document.getElementById('id').value;
@@ -88,7 +89,8 @@ loginBtn.addEventListener('click', function() {
             //存储用户信息
             //sessionStorage.setItem('user_account', id);
             //设置cookie保存登录信息,7天失效
-            alert("登录成功");
+            hideLoading();
+            showToast("登录成功");
             setCookie('login_cookie',id,7);
 
             //登陆成功关闭界面
@@ -97,9 +99,10 @@ loginBtn.addEventListener('click', function() {
             document.getElementById('user_not_login').style.display = 'none';
             document.getElementById('user_login_in').style.display = 'inline';
         } else {
-            alert('用户名或密码出错');
+            hideLoading();
+            showToast("用户名或密码出错");
         }
-        //alert(myjson.user.accout+myjson.user.password);
+        //showToast(myjson.user.accout+myjson.user.password);
     });
 });
 
