@@ -10,6 +10,11 @@ function closeLogin() {
     document.getElementById('login_part').style.display = 'none';
 }
 
+//重置密码
+function remindPassword() {
+    showToast('功能暂未开放');
+}
+
 // 点击跳转到注册状态
 document.getElementById('to_register').addEventListener('click', function() {
     //隐藏登录按钮
@@ -38,13 +43,19 @@ document.getElementById('to_login').addEventListener('click', function() {
 
 let register = document.getElementById('register');
 register.addEventListener('click', function() {
-    showLoading();
-    //注册
     //取得账号密码
     let id = document.getElementById('id').value;
     let pw1 = document.getElementById('pw1').value;
     let pw2 = document.getElementById('pw2').value;
+    if(checkInput(id)&&checkInput(pw1)&&checkInput(pw2)){
+
+    }else{
+        showToast('请输入5~13位长度字符');
+        return;
+    }
+    //注册
     if (checkPW(pw1, pw2)) {
+        showLoading();
         //保存用户到服务器
         let api = "https://www.blitheanon.com:3000/api/register?";
         api += "account=" + id + "&" + "password=" + pw2;
@@ -76,11 +87,18 @@ register.addEventListener('click', function() {
 
 let loginBtn = document.getElementById('login');
 loginBtn.addEventListener('click', function() {
-    showLoading();
-    //点击登录
     //取得账号密码
     let id = document.getElementById('id').value;
     let pw = document.getElementById('pw1').value;
+    //检查输入长度
+    if(checkInput(id)&&checkInput(pw)){
+
+    }else{
+        showToast('请输入5~13位长度字符');
+        return;
+    }
+    showLoading();
+    //点击登录
 
     //保存用户到服务器
     let api = "https://www.blitheanon.com:3000/api/login?";

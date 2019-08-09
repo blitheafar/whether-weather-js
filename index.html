@@ -99,7 +99,7 @@
                 <a href="earthquake/build/index.html" title="React实况地震" target="_self">React 实况地震</a>
                 <!-- <a href="tictactoe/build/index.html" title="react game" target="_self">React 实时地震</a> -->
             </span>
-            <span>Whether-Weather / Version: 2.11</span>
+            <span>Whether-Weather / Version: 2.12</span>
             <span>© 2019 Blithe</span>
         </div>
 
@@ -113,20 +113,22 @@
     <div class="login-part" id="login_part" style="display:none">
         <div class="close-container"><i id="login_close" class="fa fa-times-circle fa-lg" onclick="closeLogin()"></i></div>
         <div class="input-container">
-            <input id="id" type="text" name="" value="" placeholder="账号">
+            <input id="id" type="text" value="" placeholder="账号" onkeyup="value=value.replace(/[^\w\@\.]/g,'')" maxlength="13">
         </div>
         <div class="input-container">
-            <span></span><input id="pw1" type="password" name="" value="" placeholder="密码">
+            <input id="pw1" type="password" name="" value="" placeholder="密码" onkeyup="value=value.replace(/[^\w\@\.]/g,'')" maxlength="13">
         </div>
         <div class="input-container" id="pw2Container" style="display: none">
-            <span></span><input id="pw2" type="password" name="" value="" placeholder="确认密码">
+            <input id="pw2" type="password" name="" value="" placeholder="确认密码" onkeyup="value=value.replace(/[^\w\@\.]/g,'')" maxlength="13">
         </div>
         <button type="button" name="button" id="login">登录</button>
         <button type="button" name="button" id="register" style="display: none">注册</button>
 
-
-        <button type="button" name="button" id="to_register">注册</button>
-        <button type="button" name="button" id="to_login" style="display:none">登录</button>
+        <div class="to_container">
+            <span class="to_item" id="forgetpassword" onclick="remindPassword()">忘记密码</span>
+            <span class="to_item" id="to_register">注册</span>
+            <span class="to_item" id="to_login" style="display:none">登录</span>
+        </div>
     </div>
 
     <!-- 数据同步框 -->

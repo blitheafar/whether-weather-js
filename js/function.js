@@ -392,3 +392,15 @@ function showLoading() {
 function hideLoading() {
     document.getElementById('loading').style.display="none";
 }
+
+//正则表达式检查输入长度
+function checkInput(_input) {
+    //限制输入长度
+    let regLen = /^.{5,13}$/;
+    if (regLen.test(_input)) {
+        return true;
+    } else {
+        //return '请输入6~13位长度字符';
+        return false;
+    }
+}
