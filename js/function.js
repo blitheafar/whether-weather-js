@@ -17,15 +17,17 @@ function removeIput() {
 function loadTodayWeatherByIP(_ip) {
     removeScript();
     let script = document.createElement("script");
-    script.src = 'https://www.tianqiapi.com/api?' + 'version=v6&ip=' + _ip + '&callback=initNowWeather';
+    script.src = 'https://www.tianqiapi.com/api?appid=54774696&appsecret=ybbZu6d6&' + 'version=v6&ip=' + _ip + '&callback=initNowWeather';
     document.getElementById('jsonp-area').appendChild(script);
 }
+
+//
 
 //jsonp方式通过客户端ip取得七天天气
 function loadWeekWeatherByIP(_ip) {
     removeScript();
     let script = document.createElement("script");
-    script.src = 'https://www.tianqiapi.com/api?' + 'version=v1&ip=' + _ip + '&callback=initWeekWeather';
+    script.src = 'https://www.tianqiapi.com/api?appid=54774696&appsecret=ybbZu6d6&' + 'version=v1&ip=' + _ip + '&callback=initWeekWeather';
     document.getElementById('jsonp-area').appendChild(script);
 }
 
@@ -156,7 +158,7 @@ function removeScript() {
 function loadWeatherByID(_id) {
     removeScript();
     let script = document.createElement("script");
-    script.src = 'https://www.tianqiapi.com/api?' + 'version=v6&cityid=' + _id + '&callback=addNewCity';
+    script.src = 'https://www.tianqiapi.com/api?appid=54774696&appsecret=ybbZu6d6&' + 'version=v6&cityid=' + _id + '&callback=addNewCity';
     document.getElementById('jsonp-area').appendChild(script);
 }
 
@@ -164,7 +166,7 @@ function loadWeatherByID(_id) {
 function loadWeekWeatherByID(_id) {
     removeScript();
     let script = document.createElement("script");
-    script.src = 'https://www.tianqiapi.com/api?' + 'version=v1&cityid=' + _id + '&callback=initWeekWeather';
+    script.src = 'https://www.tianqiapi.com/api?appid=54774696&appsecret=ybbZu6d6&' + 'version=v1&cityid=' + _id + '&callback=initWeekWeather';
     document.getElementById('jsonp-area').appendChild(script);
 }
 
