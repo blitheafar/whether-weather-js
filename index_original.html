@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <!-- 设置屏幕缩放比 -->
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <title>whether weather</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/weather-logo.css">
+    <link rel="stylesheet" href="css/response.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="city/city.json"></script>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+</head>
+
+<body>
+    <!-- 用于jsonp跨域动态添加script标签 -->
+    <div id="jsonp-area">
+    </div>
+
+    <div class="container">
+        <div class="page">
+            <!-- 顶部搜索栏 -->
+            <header>
+                <div>
+                    <i class="fa fa-user-o fa-lg" id="user_not_login"></i>
+                    <i class="fa fa-user fa-lg" id="user_login_in" style="color: #9ccc65;display: none"></i>
+                    <input id="input_key" type="text" placeholder="输入地区名搜索">
+                    <!-- <input id="input_key" type="text" placeholder="输入地区名搜索" oninput="preRequestCity(this.value)"> -->
+                    <i id="ipt_delete" class="fa fa-times-circle fa-lg" onclick="removeIput()"></i>
+                </div>
+                <ul id="city_list">
+                </ul>
+            </header>
+
+            <main>
+                <div class="main-container">
+                    <div class="main-top">
+                        <span class="main-left">
+                            <i class="fa fa-map-marker fa-lg"></i>
+                            <span id="now_city">-</span>
+                        </span>
+                        <span class="main-right">
+                            <span id="update_time">--:--</span>
+                            <span>更新</span>
+                        </span>
+                    </div>
+
+                    <div class="main-main">
+                        <span id="now_tem">-</span>
+                        <span>
+                            <span id="now_wea">-</span>
+                            <span>/</span>
+                            <span id="now_win">-</span>
+                        </span>
+                        <span id="now_air_container">
+                            <span id="now_air">-</span>
+                            <span id="now_air_level">-</span>
+                        </span>
+                    </div>
+
+                    <div class="main-bottom">
+                        <span class="main-left">
+                            <span>今天:</span>
+                            <span id="now_today_wea">-</span>
+                        </span>
+                        <span class="main-right">
+                            <span id="now_low_tem">-</span>~<span id="now_high_tem">-</span>°C
+                        </span>
+                    </div>
+                </div>
+            </main>
+
+            <div id="wea_chart"></div>
+
+            <footer>
+                <!-- <div class="square">
+                <img class="sunny" alt="">
+                <div>
+                    <span>北京</span>
+                    <span>/</span>
+                    <span>阴</span>
+                </div>
+                <div>23°C</div>
+            </div> -->
+            </footer>
+
+        </div>
+
+        <div id="about_site">
+            <span style="padding:0;margin:0">
+                <a class="fa fa-github fa-2x" href="https://github.com/BlitheAnon" title="GitHub icon" target="_blank"></a>
+                <a href="earthquake/build/index.html" title="React实况地震" target="_self">React 实况地震</a>
+                <!-- <a href="tictactoe/build/index.html" title="react game" target="_self">React 实时地震</a> -->
+            </span>
+            <span>Whether-Weather / Version: 2.13</span>
+            <span>© 2019 Blithe</span>
+        </div>
+
+    </div>
+
+
+    <!-- 提示框 -->
+    <div id="snackbar"></div>
+
+    <!-- 登录框 -->
+    <div class="login-part" id="login_part" style="display:none">
+        <div class="close-container"><i id="login_close" class="fa fa-times-circle fa-lg" onclick="closeLogin()"></i></div>
+        <div class="input-container">
+            <input id="id" type="text" value="" placeholder="账号" onkeyup="value=value.replace(/[^\w\@\.]/g,'')" maxlength="13">
+        </div>
+        <div class="input-container">
+            <input id="pw1" type="password" name="" value="" placeholder="密码" onkeyup="value=value.replace(/[^\w\@\.]/g,'')" maxlength="13">
+        </div>
+        <div class="input-container" id="pw2Container" style="display: none">
+            <input id="pw2" type="password" name="" value="" placeholder="确认密码" onkeyup="value=value.replace(/[^\w\@\.]/g,'')" maxlength="13">
+        </div>
+        <button type="button" name="button" id="login">登录</button>
+        <button type="button" name="button" id="register" style="display: none">注册</button>
+
+        <div class="to_container">
+            <span class="to_item" id="forgetpassword" onclick="remindPassword()">忘记密码</span>
+            <span class="to_item" id="to_register">注册</span>
+            <span class="to_item" id="to_login" style="display:none">登录</span>
+        </div>
+    </div>
+
+    <!-- 数据同步框 -->
+    <div class="synchro-part" id="synchro_part" style="display:none">
+        <div class="close-container"><i id="synchro_close" class="fa fa-times-circle fa-lg" onclick="closeSynchro()"></i></div>
+
+        <button type="button" name="button" id="uploadcity" onclick="uploadcity()">上传城市</button>
+        <button type="button" name="button" id="downloadcity" onclick="downloadcity()">同步城市</button>
+        <button type="button" name="button" id="loginout" onclick="logout()">退出登录</button>
+    </div>
+
+    <!-- 加载动画 -->
+    <div id="loading" style="display: none;">
+        <div class="sk-cube-grid">
+            <div class="sk-cube sk-cube1"></div>
+            <div class="sk-cube sk-cube2"></div>
+            <div class="sk-cube sk-cube3"></div>
+            <div class="sk-cube sk-cube4"></div>
+            <div class="sk-cube sk-cube5"></div>
+            <div class="sk-cube sk-cube6"></div>
+            <div class="sk-cube sk-cube7"></div>
+            <div class="sk-cube sk-cube8"></div>
+            <div class="sk-cube sk-cube9"></div>
+        </div>
+    </div>
+    <!-- 取得访问者ip -->
+    <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script type="text/javascript" src="js/storage.js"></script>
+    <script type="text/javascript" src="js/function.js?version=1"></script>
+    <script type="text/javascript" src="js/match.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/synchroData.js"></script>
+    <script type="text/javascript" src="js/logout.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            //刷新页面后读取sessionStorage
+            pageReload();
+
+            //中文输入完毕后监听
+            var typing = false;
+            document.getElementById('input_key').addEventListener('compositionstart', function() {
+                typing = true;
+            })
+            document.getElementById('input_key').addEventListener('compositionend', function() {
+                typing = false;
+            })
+            document.getElementById('input_key').addEventListener('input', function() {
+                let _self = this;
+                setTimeout(function() {
+                    if (!typing) {
+                        preRequestCity(_self.value);
+                    }
+                }, 0);
+            })
+
+            //点击其他区域隐藏搜索结果下拉列表
+            document.addEventListener(clickEvent, function() {
+                document.getElementById('city_list').innerHTML = '';
+            });
+
+            //取得jsonp返回ip
+            let _userIP = returnCitySN["cip"];
+            loadTodayWeatherByIP(_userIP);
+            loadWeekWeatherByIP(_userIP);
+        }
+    </script>
+    <script type="text/javascript">
+        function createWeekEchart(logo_arr, high_tem_arr, low_tem_arr, win_arr, air_arr, _min, _max) {
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('wea_chart'));
+
+            // 指定图表的配置项和数据
+            option = {
+                grid: {
+                    top: '0',
+                    left: '0',
+                    right: '0',
+                    bottom: '0',
+                },
+                xAxis: [{
+                    offset: -205,
+                    type: 'category',
+                    data: getWeekArray(),
+                    axisLine: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        interval: 0, //设置成 0 强制显示所有标签。
+                    }
+                }, {
+                    offset: -40,
+                    type: 'category',
+                    data: get7Day(),
+                    axisLine: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        interval: 0, //设置成 0 强制显示所有标签。
+                    }
+                }, {
+                    offset: -80,
+                    type: 'category',
+                    data: logo_arr,
+                    axisLine: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        formatter: function(value) {
+                            return weaLogoRichMatch(value);
+                        },
+                        interval: 0, //设置成 0 强制显示所有标签。
+                        margin: 0,
+                        rich: { //x轴刻度标签的自定义--图片+文字
+                            sunny: { //与data中的数组元素要对应
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/sunny.png',
+                                }
+                            },
+                            snow: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/snow.png',
+                                }
+                            },
+                            dust: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/dust.png',
+                                }
+                            },
+                            fog: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/fog.png',
+                                }
+                            },
+                            hail: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/hail.png',
+                                }
+                            },
+                            cloud: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/cloud.png',
+                                }
+                            },
+                            rain: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/rain.png',
+                                }
+                            },
+                            cloudy: {
+                                width: 40,
+                                height: 40,
+                                backgroundColor: {
+                                    image: 'images/cloudy.png',
+                                }
+                            }
+                        }
+                    }
+                }, {
+                    offset: -180,
+                    type: 'category',
+                    data: win_arr,
+                    splitLine: {
+                        show: true,
+                        interval: 0,
+                        lineStyle: {
+                            color: '#bdbdbd',
+                        },
+                    },
+                    axisLine: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        interval: 0,
+                    }
+                }, {
+                    offset: -199,
+                    type: 'category',
+                    data: air_arr,
+                    //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    axisLine: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: { //刻度标签--即轴线下的文字
+                        formatter: function(value) {
+                            return airRichMatch(value);
+                        },
+                        interval: 0, //设置成 0 强制显示所有标签。
+                        margin: 0,
+                        rich: { //x轴刻度标签的自定义--图片+文字
+                            level_0: { //与data中的数组元素要对应
+                                width: 40,
+                                height: 20,
+                                align: 'center',
+                                borderColor: '#bdbdbd',
+                                borderWidth: 1,
+                                borderRadius: 4,
+                                color: '#bdbdbd',
+                            },
+                            level_1: { //与data中的数组元素要对应
+                                width: 40,
+                                height: 20,
+                                align: 'center',
+                                backgroundColor: '#9ccc65',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_2: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: '#ffd600',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_3: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: 'ORANGE',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_4: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: 'RED',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_5: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: 'PURPLE',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            },
+                            level_6: {
+                                width: 40,
+                                height: 20,
+                                lineHeight: 20,
+                                align: 'center',
+                                backgroundColor: 'BROWN',
+                                borderRadius: 4,
+                                color: '#ffffff',
+                            }
+                        }
+                    }
+                }],
+                yAxis: {
+                    show: false,
+                    splitLine: {
+                        show: false,
+                        interval: 0,
+                    },
+                    min: _min,
+                    max: _max,
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#bdbdbd',
+                        }
+                    }
+                },
+                series: [{
+                    data: high_tem_arr,
+                    type: 'line',
+                    smooth: true,
+                    lineStyle: {
+                        color: '#bdbdbd',
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: function(param) {
+                            //匹配数组第一个值
+                            if (param.dataIndex == 0) {
+                                return '{light|' + param.value + '}';
+                            }
+                        },
+                        interval: 0, //设置成 0 强制显示所有标签。
+                        rich: {
+                            light: { //设置第一个点颜色
+                                color: '#000000',
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        // borderColor: '#000000',
+                        // borderWidth: 2,
+                        //回调函数设置第一个点颜色
+                        color: function(param) {
+                            if (param.dataIndex == 0) {
+                                return '#000000';
+                            } else {
+                                return '#9e9e9e';
+                            }
+                        }
+                    }
+                }, {
+                    data: low_tem_arr,
+                    type: 'line',
+                    smooth: true,
+                    lineStyle: {
+                        color: '#bdbdbd',
+                    },
+                    label: {
+                        show: true,
+                        position: 'bottom',
+                        formatter: function(param) {
+                            //匹配数组第一个值
+                            if (param.dataIndex == 0) {
+                                return '{light|' + param.value + '}';
+                            }
+                        },
+                        interval: 0, //设置成 0 强制显示所有标签。
+                        rich: {
+                            light: { //设置第一个点颜色
+                                color: '#000000',
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        color: function(param) {
+                            if (param.dataIndex == 0) {
+                                return '#000000';
+                            } else {
+                                return '#9e9e9e';
+                            }
+                        }
+                    }
+                }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+
+            window.onresize = myChart.resize;
+        }
+    </script>
+</body>
+
+</html>
