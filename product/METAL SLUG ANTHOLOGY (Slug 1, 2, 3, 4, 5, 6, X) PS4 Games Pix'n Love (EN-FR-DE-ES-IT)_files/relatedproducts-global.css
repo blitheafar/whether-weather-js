@@ -1,0 +1,27 @@
+/**
+ * TEMPLATE GLOBAL CSS
+ */
+
+.lineven-relatedproducts .discount-percentage { top: 10px; }
+
+.rlp-home .header-hr{ margin-top: 0px!important; }
+.rlp-product-footer { margin-top: 10px; }
+.rlp-product-footer .header-hr,
+.rlp-shoppingcart-footer .header-hr{ margin-top: 0px!important; }
+.rlp-product-quickview h2 { text-align: left; }
+.rlp-ajaxcart { padding-left: 8px; padding-right: 8px; }
+.rlp-ajaxcart .thumbnails ul.rlp-products li.rlp-product .product-image { max-width: none!important; }
+.rlp-ajaxcart .thumbnails ul.rlp-products li.rlp-product img { width: auto!important; }
+.rlp-ajaxcart h2 { text-align: left; }
+
+.rlp-home .products-section-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.rlp-busyload-container, .rlp-busyload-container-item {
+    align-items: initial!important;
+}
+.rlp-busyload-spinner {
+    margin-top: 50px!important;
+}

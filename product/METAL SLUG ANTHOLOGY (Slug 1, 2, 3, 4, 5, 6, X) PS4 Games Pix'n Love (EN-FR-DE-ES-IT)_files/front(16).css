@@ -1,0 +1,39 @@
+#mod-insuredshipping{
+    border: 1px solid #f6f6f6;
+    padding: 10px 10px 5px 10px;
+    color: #737373;
+    background: #f6f6f6;
+    margin-top: 20px;
+    outline: 2px solid #999999;
+}
+/* Supercheckout Module compatibility */
+#module-supercheckout-supercheckout .insured-onfly{
+    display: table-row;
+    position: relative;
+    height: 30px;
+    width: 100%;
+}
+#module-supercheckout-supercheckout #insurance_total{
+    position: absolute;
+    width: 100%;
+    vertical-align: top;
+}
+#module-supercheckout-supercheckout #insurance_total .title{
+    display:inline-block;
+    width: 60%;
+    text-align: right;
+    color: #696969!important;
+    border-bottom: 1px solid #c5c5c5!important;
+    font-size: 12px;
+    padding: 5px 0!important;
+}
+#module-supercheckout-supercheckout #insurance_total .value{
+    display:inline-block;
+    width: 40%;
+    text-align: right;
+    color: #7B7B7B!important;
+    border-bottom: 1px solid #c5c5c5!important;
+    font-size: 12px;
+    padding: 5px 0!important;
+}
+/* Supercheckout Module compatibility */

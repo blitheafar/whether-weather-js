@@ -1,0 +1,95 @@
+/* Auto generated from css.tpl */
+
+
+    
+    body .psproductcountdown {
+        font-size: 100% !important;
+    }
+    
+    
+    body .product_list .psproductcountdown,
+    body #product_list .psproductcountdown,
+    body .ajax_block_product .psproductcountdown,
+    body .product-miniature .psproductcountdown {
+        font-size: 70% !important;
+    }
+    
+    
+    @media (max-width: 767px) {
+        body .product_list .psproductcountdown,
+        body #product_list .psproductcountdown,
+        body .ajax_block_product .psproductcountdown,
+        body .product-miniature .psproductcountdown {
+            font-size: 70% !important;
+        }
+    }
+    
+    
+    body #left_column .psproductcountdown, body #right_column .psproductcountdown,
+    body #left-column .psproductcountdown, body #right-column .psproductcountdown {
+        font-size: 50% !important;
+    }
+    
+    
+    .psproductcountdown .pspc_h,
+    .psproductcountdown .pspc-offer-ends {
+        display: block;
+    }
+    
+
+
+            
+        body .psproductcountdown .pspc-highlight {
+            background: rgb(204, 0, 0);
+        }
+        body .pspc-main .pspc-time {
+            border-color: rgb(204, 0, 0) !important;
+        }
+        
+    
+            
+            body .pspc-main .pspc-count,
+            body .psproductcountdown.pspc-show-colon .pspc-main .pspc-count:after {
+                color: #333333;
+            }
+        
+    
+    
+        body .psproductcountdown .pspc-main .pspc-highlight .pspc-count {
+            color: #ffffff !important;
+        }
+    
+            
+        body .psproductcountdown .pspc-highlight .pspc-label {
+            color: #ffffff !important;
+        }
+        
+    
+            
+        body .pspc-offer-ends,
+        .psproductcountdown.pspc-long .pspc-main {
+            color: #232323 !important;
+        }
+        
+    
+
+    body .pspc-main .pspc-label {
+        color: #3f3f3f !important;
+    }
+
+
+
+
+            
+        body .product_list .psproductcountdown,
+        body #product_list .psproductcountdown,
+        body .ajax_block_product .psproductcountdown,
+        body .product-miniature .psproductcountdown,
+        #product .product_list .psproductcountdown,
+        #product #product_list .psproductcountdown,
+        #product .ajax_block_product .psproductcountdown,
+        #product .product-miniature .psproductcountdown {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+        }
+        
+    

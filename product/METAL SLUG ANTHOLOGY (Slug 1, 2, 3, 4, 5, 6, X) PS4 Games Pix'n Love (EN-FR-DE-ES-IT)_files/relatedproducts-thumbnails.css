@@ -1,0 +1,39 @@
+/**
+ * THUMBNAILS CSS
+ */
+
+.lineven-relatedproducts .thumbnails { margin-top: 10px; }
+.lineven-relatedproducts .thumbnails .clear { clear: both; }
+.lineven-relatedproducts .thumbnails ul.rlp-products { clear:both; list-style-type:none; padding:0 15px; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product { float: left; padding:3px; text-align: center; font-weight:bold; line-height:18px; text-transform:uppercase; margin: 0!important; margin-bottom:12px!important; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .product-image { position: relative; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product img { margin:0 6px; border:1px solid #D0D1D5; width: inherit!important; display: inline-block!important; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .container-description { display: inline-block; text-align:center; margin-left:4px; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .container-description .product-name { font-size:1em!important; display: inline-block; font-weight: bold; text-align: center; margin-top: 4px; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .container-description .product-name a { color:#595A5E; text-decoration: none; font-size:1em!important; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .container-description .product-name a:hover { text-decoration: underline; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .product-description { position: relative!important; height: inherit!important; width: inherit!important; background: none!important; font-size:0.8em; margin-top: 3px; font-weight:normal; text-transform: none; text-align:center;}
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .container-description .product-description a { text-decoration: none; color: inherit!important; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .container-description .product-description a:hover { text-decoration: none; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .container-description .product-attribute-designation { font-size:0.6em; font-weight: bold; margin-top: 2px; margin-bottom: 3px;}
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .product-options { height: 20px; font-size:10px; text-transform:none; font-weight: bold; font-style: italic; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .product-price { display: block!important; text-align:center; font-size:1em; margin-top: 8px; vertical-align:middle; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .product-price .old-price { font-size:0.9em!important; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .product-price .price-percent-reduction { font-size: 1em!important;}
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .product-price .current-price { font-size: 1.1em!important; display: block; }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .product-price .price { }
+.lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product .buttons { display: inline-block; margin-top: 4px; text-align:center; }
+
+/* Homecomments reviews */
+.lineven-relatedproducts .thumbnails .reviews { text-align:center; }
+.lineven-relatedproducts .thumbnails .reviews .partner_average_star { display: inline-block; }
+.lineven-relatedproducts .thumbnails .reviews .partner_details { clear: both; display: block; font-size: 0.8em; font-weight: normal; }
+
+/* Prestashop Products reviews */
+.lineven-relatedproducts .thumbnails .hook-reviews { display: block; text-align:center; clear: both; height: 18px; }
+.lineven-relatedproducts .thumbnails .hook-reviews .product-list-reviews { position: relative!important; top: -8px!important; background: none!important; }
+
+@media only screen and (max-width: 640px)
+{
+    .lineven-relatedproducts .thumbnails ul.rlp-products li.rlp-product { float: none!important; }
+}

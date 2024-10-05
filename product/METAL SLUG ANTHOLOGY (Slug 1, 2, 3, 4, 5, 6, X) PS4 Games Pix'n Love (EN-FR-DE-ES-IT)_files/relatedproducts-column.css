@@ -1,0 +1,32 @@
+/**
+ * COLUMN
+ */
+
+.lineven-relatedproducts .rlp-column {
+    box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5625rem;
+    background: white;
+    padding: 1.5625rem 1.25rem;
+}
+.lineven-relatedproducts .rlp-column ul.rlp-products { margin-left: 0px!important; padding-left: 0px!important; }
+.lineven-relatedproducts .rlp-column ul.rlp-products li.rlp-product { margin-left: 0px!important; padding-left: 0px!important; margin-bottom: 8px!important; }
+.lineven-relatedproducts .rlp-column .product-image { }
+.lineven-relatedproducts .rlp-column .products-block-image { position:relative; float: left; margin-right: 8px;}
+.lineven-relatedproducts .rlp-column .product-attribute-designation { display: none; }
+.lineven-relatedproducts .rlp-column .product-options { display: none; }
+.lineven-relatedproducts .rlp-column .product-name { font-size:0.8em!important; }
+.lineven-relatedproducts .rlp-column .product-name a { color:inherit; text-decoration: none; font-size:1em!important; }
+.lineven-relatedproducts .rlp-column .product-description { display: none; }
+.lineven-relatedproducts .rlp-column .product-price { font-size:1em; margin-top: 3px; }
+.lineven-relatedproducts .rlp-column .product-price .price { }
+.lineven-relatedproducts .rlp-column .product-price .old-price { font-size:0.9em!important; }
+.lineven-relatedproducts .rlp-column .product-price .price-percent-reduction { font-size: 1em!important;}
+
+/* Homecomments reviews */
+.lineven-relatedproducts .rlp-column .reviews{ text-align: left!important; margin-bottom: 8px; min-width: 250px; }
+.lineven-relatedproducts .rlp-column .reviews .partner_average_star { float: left; margin-right: 8px; }
+.lineven-relatedproducts .rlp-column .reviews .partner_details { display:none; }
+
+/* Prestashop Products reviews */
+.lineven-relatedproducts .rlp-column .hook-reviews { display: inline-block; text-align:center; }
+.lineven-relatedproducts .rlp-column .hook-reviews .product-list-reviews { position: relative!important; top: auto!important; margin-top: 5px; background: none!important; }

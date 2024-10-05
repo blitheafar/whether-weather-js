@@ -1,0 +1,46 @@
+/**
+ * TEMPLATE CLASSIC CSS
+ */
+
+.lineven-relatedproducts .rlp-shopping-cart .header-title { }
+.lineven-relatedproducts .rlp-shopping-cart .header-hr { margin-bottom: 10px; }
+
+.lineven-relatedproducts .classic {margin-top: 10px; }
+.lineven-relatedproducts .classic .clear { clear: both; }
+.lineven-relatedproducts .classic ul.rlp-products { clear:both; list-style-type:none; }
+.lineven-relatedproducts .classic ul.rlp-products { position:relative; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product { padding:0 15px; font-weight:bold; line-height:18px; text-transform:uppercase; margin-top: 6px!important; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .product-image { position:relative; float:left; margin-right: 5px; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product img { margin:0 6px; border:1px solid #D0D1D5; width: inherit!important; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description { float: left; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description .product-name { font-size:1em!important; font-weight: bold; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description .product-name a { color:#595A5E; text-decoration: none; font-size:1em!important; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description .product-name a:hover { text-decoration: underline; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description .product-description { position: relative!important; height: inherit!important; width: inherit!important; background: none!important; font-size:0.9em; font-weight:normal; text-transform: none; margin-top: 3px; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description .product-description a { text-decoration: none; color: inherit!important;}
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description .product-description a:hover { text-decoration: underline; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description .product-options { font-size:0.7em; font-weight: bold; font-style: italic; margin-bottom: 3px;}
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description .product-attribute-designation { font-size:0.7em; font-weight: bold; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .product-price { font-size:1em; margin-top: 3px; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .product-price .price { }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .product-price .old-price { font-size:0.9em!important; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .product-price .price-percent-reduction { font-size: 1em!important;}
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .buttons { float: right; }
+.lineven-relatedproducts .classic ul.rlp-products li.rlp-product .buttons .detail-button { text-transform: none!important; }
+
+@media only screen and (max-width: 640px)
+{
+    .lineven-relatedproducts .classic ul.rlp-products li.rlp-product { text-align:center!important; }
+    .lineven-relatedproducts .classic ul.rlp-products li.rlp-product .container-description { float:none!important; margin-top: 17px; }
+    .lineven-relatedproducts .classic ul.rlp-products li.rlp-product .product-image { float:none!important; display: inline-block; }
+    .lineven-relatedproducts .classic ul.rlp-products li.rlp-product .buttons { float:none!important; margin-top: 12px; }
+}
+
+/* Homecomments reviews */
+.lineven-relatedproducts .classic .reviews { text-align: left!important; margin-top: 5px; margin-bottom: 5px; min-width: 250px; }
+.lineven-relatedproducts .classic .reviews .partner_average_star { float: left; margin-right: 8px; }
+.lineven-relatedproducts .classic .reviews .partner_details { font-size: 11px; font-weight: normal; padding-top: 2px; }
+
+/* Prestashop Products reviews */
+.lineven-relatedproducts .classic .hook-reviews { display: inline-block; text-align:center; }
+.lineven-relatedproducts .classic .hook-reviews .product-list-reviews { position: relative!important; top: auto!important; margin-top: 5px; background: none!important; }
